@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmarsa-s <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/18 15:58:02 by mmarsa-s          #+#    #+#              #
-#    Updated: 2025/02/18 15:58:04 by mmarsa-s         ###   ########.fr        #
+#    Created: 2025/02/18 18:54:27 by mmarsa-s          #+#    #+#              #
+#    Updated: 2025/02/18 18:54:30 by mmarsa-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,15 @@ MAGENTA := \033[35m
 CYAN    := \033[36m
 RESET   := \033[0m
 
-NAME = megaphone
+NAME  = phonebook
 CC = c++
-FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
+FLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 RM = rm -f
 
-SRC = megaphone.cpp
+SRC = 	main.cpp \
+		contact.cpp \
+		phonebook.cpp
+
 F_OBJ = obj/
 OBJS = $(addprefix $(F_OBJ), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(F_OBJ), $(SRC:.cpp=.d))
@@ -44,7 +47,7 @@ clean:
 	@$(RM) $(OBJS) $(DEPS)
 	@$(RM) -r obj
 
-fclean:	clean
+fclean: clean
 	@$(RM) $(NAME)
 	@echo "$(RED)Te miro y te elimino.$(RESET)"
 
