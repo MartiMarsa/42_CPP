@@ -39,7 +39,8 @@ all: dir $(NAME)
 dir:
 	@mkdir -p $(F_OBJ)
 
-$(NAME): $(OBJS) $(DEPS)
+-include $(DEPS)
+$(NAME): $(OBJS)
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)Te miro y te compilo.$(RESET)"
 
