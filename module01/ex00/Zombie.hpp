@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmarsa-s <mmarsa-s@student.42fr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 16:02:05 by mmarsa-s          #+#    #+#             */
+/*   Updated: 2025/02/25 16:02:07 by mmarsa-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
+
+# include <string>
+# include <iostream>
+# include <iomanip>
+
+class Zombie
+{
+	private:
+
+		std::string	_name;
+
+	public:
+
+	    Zombie();
+		Zombie( std::string name );
+	    ~Zombie();
+
+		void	announce();
+};
+
+Zombie*	newZombie( std::string name );
+void	randomChump( std::string name ); 
+
+#endif
+
