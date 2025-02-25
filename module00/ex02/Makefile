@@ -27,18 +27,19 @@ SRC = 	Account.cpp \
 		tests.cpp
 D_OBJ = obj/
 OBJS = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
-DEPS = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
+DEPS = $(addprefix $(D_OBJ), $(SRC:.cpp=.d))
 
 $(D_OBJ)%.o: %.cpp Makefile
-	@$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 all: dir $(NAME)
 
 dir:
 	@mkdir -p $(D_OBJ)
 
-$(NAME): $(OBJS) $(DEPS)
-	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+-include $(DEPS)
+$(NAME): $(OBJS) $(DEPS) 
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)Te miro y te compilo.$(RESET)"
 
 clean:
