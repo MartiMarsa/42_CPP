@@ -22,7 +22,7 @@ Zombie::Zombie()
 Zombie::Zombie( std::string name)
 {
     this->_name = name;
-    std::cout << this->_name << " was born." << std::endl;    
+    std::cout << "A was born. Its name is" << this->_name <<std::endl;    
     return ;
 }
 
@@ -39,7 +39,7 @@ void    Zombie::announce()
 
 void    Zombie::reName( std::string name)
 {
-    std::cout << this->_name << "was is now called ";
+    std::cout << this->_name << " is now called ";
     this->_name = name;
     std::cout << this->_name << std::endl;
     return;
