@@ -20,7 +20,7 @@ RESET   := \033[0m
 
 NAME = Account
 CC = c++
-FLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
+FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 RM = rm -f
 
 SRC = 	Account.cpp \
@@ -38,7 +38,7 @@ dir:
 	@mkdir -p $(D_OBJ)
 
 -include $(DEPS)
-$(NAME): $(OBJS) $(DEPS) 
+$(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)Te miro y te compilo.$(RESET)"
 
