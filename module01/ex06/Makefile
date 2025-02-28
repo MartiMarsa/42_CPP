@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmarsa-s <mmarsa-s@student.42fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/27 19:48:33 by mmarsa-s          #+#    #+#              #
-#    Updated: 2025/02/27 19:48:34 by mmarsa-s         ###   ########.fr        #
+#    Created: 2025/02/28 11:25:17 by mmarsa-s          #+#    #+#              #
+#    Updated: 2025/02/28 11:25:19 by mmarsa-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ MAGENTA := \033[35m
 CYAN    := \033[36m
 RESET   := \033[0m
 
-NAME = Harl
+NAME = harlFilter
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
+CFLAGS = -Wall -MMD -std=c++98
 RM = rm -f
 
 SRC =	main.cpp \
