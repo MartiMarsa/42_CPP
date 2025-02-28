@@ -21,7 +21,7 @@ RESET   := \033[0m
 
 NAME = harlFilter
 CC = c++
-CFLAGS = -Wall -MMD -std=c++98
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 RM = rm -f
 
 SRC =	main.cpp \

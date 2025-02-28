@@ -27,10 +27,30 @@ void    Harl::complain(std::string level)
 	}
 	switch (i)
 	{
-		case 0: debug(); std::cout << std::endl;
-		case 1: info(); std::cout << std::endl;
-		case 2: warning(); std::cout << std::endl;
-		case 3: error(); std::cout << std::endl; break;	
+		case 0:
+		{
+			debug();
+			std::cout << std::endl;
+			goto case1;
+		}
+		case 1: case1:
+		{
+			info();
+			std::cout << std::endl;
+			goto case2;
+		}
+		case 2: case2:
+		{
+			warning();
+			std::cout << std::endl;
+			goto case3;
+		}
+		case 3: case3:
+		{
+			error();
+			std::cout << std::endl;
+			break;
+		}	
 		default: std::cout << "I don't undertand that brrrr." << std::endl;	
 	}
 	
