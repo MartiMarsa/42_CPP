@@ -20,7 +20,7 @@ RESET   := \033[0m
 
 NAME = Fixed
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -g
 RM = rm -f
 
 SRC =	main.cpp \
