@@ -22,8 +22,8 @@ int main( void )
     Point  point(3,2);
 
     if (bsp(a,b,c,point))
-        std::cout << "Este cae dentro." << std::endl;
+        std::cout << "This is in." << std::endl;
     else
-        std::cout << "Se fue fuera illo." << std::endl;
+        std::cout << "This is out." << std::endl;
     return (0);
 }
