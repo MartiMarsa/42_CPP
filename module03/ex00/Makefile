@@ -27,10 +27,10 @@ SRC =	main.cpp \
 		ClapTrap.cpp
 D_OBJ = obj/
 OBJS = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
-DEPS = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
+DEPS = $(addprefix $(D_OBJ), $(SRC:.cpp=.d))
 
 $(D_OBJ)%.o: %.cpp Makefile
-	$(CC) $(CFLAGS) $(SRC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: dir $(NAME)
 
