@@ -20,7 +20,7 @@ RESET   := \033[0m
 
 NAME = BSP
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -g
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 RM = rm -f
 
 SRC =	main.cpp \
