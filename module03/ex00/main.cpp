@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 		ClapTrap	cT1(argv[1]);
 		cT1.attack("the enemy");
 		cT1.beRepaired(100);
+		cT1.takeDamage(56);
 		std::cout << "ClapTrap " << cT1.getName() << " has " << cT1.getHitPoints();
 		std::cout << " hit points and "<< cT1.getEnergyPoints() << " energy points.";
 		std::cout << std::endl;
