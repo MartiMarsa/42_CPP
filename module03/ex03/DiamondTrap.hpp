@@ -14,6 +14,9 @@
 # define DIOAMONDTRAP_HPP
 
 # include <string>
+# include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
 class DiamondTrap
 {

@@ -10,15 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FragTrap
+NAME = DiamondTrap
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -Wshadow
 RM = rm -f
 
 SRC =	main.cpp \
 		ClapTrap.cpp \
 		ScavTrap.cpp \
-		FragTrap.cpp
+		FragTrap.cpp \
+		DiamondTrap.cpp
 D_OBJ = obj/
 OBJS = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJ), $(SRC:.cpp=.d))
