@@ -15,7 +15,8 @@
 FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "FragTrap default constructor has been called."  << std::endl;
-    _hitPoints = 100;
+    _name = "Agamenon";
+	_hitPoints = 100;
     _energyPoints = 100;
     _attackDamage = 30;
 
