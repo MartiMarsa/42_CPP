@@ -19,8 +19,16 @@ int main(void)
 {
 	std::cout << RED;
 	ClapTrap		C("Son Goku");
+	std::cout << "His stats are:" << std::endl;
+	std::cout <<"Attack: " << C.getAttackDamage() << std::endl << "Hit Points: ";
+	std::cout << C.getHitPoints() << std::endl << "Energy points: ";
+	std::cout << C.getEnergyPoints() << std::endl;
 	std::cout << BLUE;
     DiamondTrap     D("Vegeta");
+	std::cout << "His stats are:" << std::endl;
+	std::cout <<"Attack: " << D.getAttackDamage() << std::endl << "Hit Points: ";
+	std::cout << D.getHitPoints() << std::endl << "Energy points: ";
+	std::cout << D.getEnergyPoints() << std::endl;
 	std::cout << RED;
 	C.attack(D.getName());
 	std::cout << BLUE;
