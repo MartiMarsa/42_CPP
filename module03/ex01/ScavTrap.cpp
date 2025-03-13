@@ -15,7 +15,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	this->setName("Juan Carlos");
+	this->setName("Felipe III");
 	this->sethitPoints(100);
 	this->setEnergyPoints(50);
 	this->setAttackDamage(20);
@@ -50,7 +50,8 @@ ScavTrap::~ScavTrap()
 }
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap is now in Gate keeper mode. You don't want to mess with it." << std::endl;
+	std::cout << "ScavTrap " << this->getName() << " is now in Gate keeper mode.";
+	std::cout << "You don't want to mess with it." << std::endl;
 }
 void	ScavTrap::attack(const std::string& target)
 {

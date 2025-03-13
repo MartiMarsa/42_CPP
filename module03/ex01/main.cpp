@@ -44,9 +44,30 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		std::cout << "Pick names for ClapTrap and ScavTrap, then enter them in the ";
-		std::cout << "command line, separated by a space. Thanks! :)";
+		std::cout << RED;
+		ClapTrap	cT1;
+		std::cout << "Claptrap " << cT1.getName() << " has " << cT1.getHitPoints();
+		std::cout << " hit points and "<< cT1.getEnergyPoints() << " energy points.";
 		std::cout << std::endl;
+		cT1.attack("the enemy");
+		cT1.beRepaired(100);
+		cT1.takeDamage(50);
+		std::cout << "Claptrap " << cT1.getName() << " has " << cT1.getHitPoints();
+		std::cout << " hit points and "<< cT1.getEnergyPoints() << " energy points.";
+		std::cout << RESET << std::endl << std::endl;
+
+		std::cout << BLUE;
+		ScavTrap	cT2;
+		std::cout << "ScavTrap " << cT2.getName() << " has " << cT2.getHitPoints();
+		std::cout << " hit points and "<< cT2.getEnergyPoints() << " energy points.";
+		std::cout << std::endl;
+		cT2.attack("the enemy");
+		cT2.guardGate();
+		cT2.beRepaired(40);
+		cT2.takeDamage(100);
+		std::cout << "ScavTrap " << cT2.getName() << " has " << cT2.getHitPoints();
+		std::cout << " hit points and "<< cT2.getEnergyPoints() << " energy points.";
+		std::cout << RESET << std::endl << std::endl;
 	}
 	return (0);
 }

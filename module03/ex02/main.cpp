@@ -18,7 +18,7 @@
 int main(void)
 {
 		std::cout << RED;
-    	ClapTrap	cT1("Jesulin de Ubrique");
+    	ClapTrap	cT1("Andreu Buenafuente");
 		std::cout << "ClapTrap " << cT1.getName() << " has " << cT1.getHitPoints();
 		std::cout << " hit points and "<< cT1.getEnergyPoints() << " energy points.";
 		std::cout << std::endl;
@@ -30,7 +30,7 @@ int main(void)
 		std::cout << RESET << std::endl << std::endl;
 
 		std::cout << BLUE;
-		ScavTrap	cT2("Juan Carlos I");
+		ScavTrap	cT2("Berto Romero");
 		std::cout << "ScavTrap " << cT2.getName() << " has " << cT2.getHitPoints();
 		std::cout << " hit points and "<< cT2.getEnergyPoints() << " energy points.";
 		std::cout << std::endl;
@@ -43,7 +43,7 @@ int main(void)
 		std::cout << RESET << std::endl << std::endl;
 
 		std::cout << YELLOW;
-        FragTrap    cT3("Apu, el del badulaque,");
+        FragTrap    cT3("David Broncano");
 		std::cout << "FragTrap " << cT3.getName() << " has " << cT3.getHitPoints();
 		std::cout << " hit points and "<< cT3.getEnergyPoints() << " energy points.";
 		std::cout << std::endl;

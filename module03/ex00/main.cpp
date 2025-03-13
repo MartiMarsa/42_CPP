@@ -16,15 +16,34 @@ int	main(int argc, char **argv)
 {
 	if (argc > 1)
 	{
-		ClapTrap	cT1(argv[1]);
+		ClapTrap	c(argv[1]);
+		ClapTrap	cT(c);
+		ClapTrap	cT1;
+		cT1 = cT;
+		std::cout << "ClapTrap " << cT1.getName() << " stats are:" << std::endl;
+		std::cout <<"Attack: " << cT1.getAttackDamage() << std::endl << "Hit Points: ";
+		std::cout << cT1.getHitPoints() << std::endl << "Energy points: ";
+		std::cout << cT1.getEnergyPoints() << std::endl;
 		cT1.attack("the enemy");
 		cT1.beRepaired(100);
 		cT1.takeDamage(50);
 		std::cout << "ClapTrap " << cT1.getName() << " has " << cT1.getHitPoints();
-		std::cout << " hit points and "<< cT1.getEnergyPoints() << " energy points.";
+		std::cout << " Hit Points and "<< cT1.getEnergyPoints() << " Energy Points.";
 		std::cout << std::endl;
 	}
 	else
-		std::cout << "Choose a robot name" << std::endl;
+	{
+		ClapTrap	cT1;
+		std::cout << "ClapTrap " << cT1.getName() << " stats are:" << std::endl;
+		std::cout <<"Attack: " << cT1.getAttackDamage() << std::endl << "Hit Points: ";
+		std::cout << cT1.getHitPoints() << std::endl << "Energy points: ";
+		std::cout << cT1.getEnergyPoints() << std::endl;
+		cT1.attack("the enemy");
+		cT1.beRepaired(100);
+		cT1.takeDamage(50);
+		std::cout << "ClapTrap " << cT1.getName() << " has " << cT1.getHitPoints();
+		std::cout << " Hit Points and "<< cT1.getEnergyPoints() << " Energy Points.";
+		std::cout << std::endl;
+	}
 	return (0);
 }
