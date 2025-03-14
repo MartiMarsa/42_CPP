@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarsa-s <mmarsa-s@student.42fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 15:57:04 by mmarsa-s          #+#    #+#             */
-/*   Updated: 2025/03/14 15:57:06 by mmarsa-s         ###   ########.fr       */
+/*   Created: 2025/03/14 15:56:30 by mmarsa-s          #+#    #+#             */
+/*   Updated: 2025/03/14 15:56:31 by mmarsa-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRINGCAT_HPP
-# define WRINGCAT_HPP
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
-# include "WrongAnimal.hpp"
-
-class WrongCat : public WrongAnimal
+int main()
 {
-    public:
-        WrongCat();
-        WrongCat(const WrongCat &other);
-        WrongCat &operator=(const WrongCat &other);
-        ~WrongCat();
+    const Animal*	dog = new Dog();
+	const Animal*	cat = new Cat();
 
-        void makeSound() const;
-};
+    cat->makeSound();
+	dog->makeSound();
+    std::cout << "What does a dog think?" << std::endl;
+    static_cast<const Dog*>(dog)->useBrain();
 
-#endif
+    delete dog;
+    delete cat;
+    return (0);
+}

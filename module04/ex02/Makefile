@@ -10,12 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = animal
+NAME = Abstractexercise
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD #-fsanitize=address,undefined
 RM = rm -f
 
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS =	main.cpp \
+		Animal.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp \
+		Brain.cpp
 D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRCS:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRCS:.cpp=.d))
