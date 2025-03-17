@@ -14,6 +14,8 @@
 # define AMATERIA_HPP
 
 # include <string>
+# include <iostream>
+# include "ICharacter.hpp"
 
 class AMateria
 {
@@ -24,7 +26,7 @@ class AMateria
     	AMateria(std::string const & type);
     	AMateria(const AMateria &other);
 		AMateria &operator=(const AMateria &other);
-		~AMateria();
+		virtual ~AMateria();
 
     	std::string const & getType() const;
     	virtual AMateria* clone() const = 0;

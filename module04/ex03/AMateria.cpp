@@ -12,15 +12,32 @@
 
 #include "AMateria.hpp"
 
-AMateria::AMateria(){}
+AMateria::AMateria() : _type("Chaos") {}
 
-AMateria::AMateria(const AMateria &other){}
+AMateria::AMateria(std::string const &type) : _type(type) {}
 
-AMateria	&AMateria::operator=(const AMateria &other) {}
+AMateria::AMateria(const AMateria &other)
+{
+    *this = other;
+}
 
-AMateria::~AMateria(){}
+AMateria	&AMateria::operator=(const AMateria &other)
+{
+    if (this != &other)
+        this->_type = other._type;
+    return (*this);
+}
 
-std::string const &AMateria::getType() const {}
+AMateria::~AMateria() {}
 
-void	AMateria::use(ICharacter &target) {}
+std::string const &AMateria::getType() const
+{
+    return (_type);
+}
+
+void	AMateria::use(ICharacter &target)
+{
+    std::cout << "* " << target.getName() << " it's not affected by this whatever";
+    std::cout << " it is" << std::endl;
+}
 
