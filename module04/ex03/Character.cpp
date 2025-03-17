@@ -158,7 +158,17 @@ void    Character::unequip(int idx)
 
 void    Character::use(int idx, ICharacter &target)
 {
-
+	if (idx < 0 || idx >= BAG)
+	{
+		std::cout << "Use error: use a valid index between 0 and 3." << std::endl;
+		return;
+	}
+	if (this->_slot[idx] == NULL)
+	{
+		std::cout << "Use error: character " << this->getName();
+		std::cout << " has nothing equiped." << std::endl;
+	}
+	std::cout << "Character " << this->getName();
 }
 
 void    Character::clearFloor()
