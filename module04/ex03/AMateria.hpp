@@ -17,6 +17,8 @@
 # include <iostream>
 # include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
     protected:

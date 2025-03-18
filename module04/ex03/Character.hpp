@@ -41,6 +41,8 @@ class Character : public ICharacter
 		void	unequip(int idx);
 		void	use(int idx, ICharacter& target);
 		void	printMaterias() const;
+		void	incrementFloorCapacity(unsigned int increment);
+		void	incrementFloorIdx();
 		unsigned int getFloorCapacity() const;
 		unsigned int getFloorIdx() const;
 };

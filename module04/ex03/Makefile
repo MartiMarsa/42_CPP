@@ -12,19 +12,20 @@
 
 NAME = interface
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -fsanitize=address
 RM = rm -f
 
 SRC =	main.cpp \
 		AMateria.cpp \
 		Ice.cpp \
-		Cure.cpp
+		Cure.cpp \
+		Character.cpp
 D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))
 
 $(D_OBJS)%.o: %.cpp Makefile
-	$(CC) $(CFLAGS) -o $< -c $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: dir $(NAME)
 
@@ -37,9 +38,9 @@ $(NAME): $(OBJS)
 
 clean:
 	$(RM) $(OBJS) $(DEPS)
-	$(RM) $(D_OBJS)
+	$(RM) -r $(D_OBJS)
 
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
