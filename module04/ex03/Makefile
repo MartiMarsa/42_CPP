@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 NAME = interface
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -fsanitize=address
+CC = g++
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -g -fsanitize=address
 RM = rm -f
 
 SRC =	main.cpp \

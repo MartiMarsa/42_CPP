@@ -30,7 +30,8 @@ Cure::~Cure() {}
 
 AMateria*	Cure::clone() const
 {
-	return (new Cure(*this));
+	AMateria* cure = new Cure();
+	return (cure);
 }
 
 void	Cure::use(ICharacter &target)

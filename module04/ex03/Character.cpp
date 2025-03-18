@@ -45,15 +45,15 @@ Character::Character(const Character &other)
 			this->_slot[i] = other._slot[i]->clone();
 	}
     this->_floorCapacity = other.getFloorCapacity();
-    this->_floorIdx = other.getFloorIdx();
-    this->_floor = new AMateria*[_floorCapacity];
-    for (unsigned int i = 0; i < this->_floorCapacity; ++i)
-    {
-        if (other._floor[i] == NULL)
-            this->_floor[i] = NULL;
-        else
-            this->_floor[i] = other._floor[i]->clone();
-    }
+    this->_floorIdx = 0;
+    // this->_floor = new AMateria*[_floorCapacity];
+    // for (unsigned int i = 0; i < this->_floorIdx; ++i)
+    // {
+    //     if (other._floor[i] == NULL)
+    //         this->_floor[i] = NULL;
+    //     else
+    //         this->_floor[i] = other._floor[i]->clone();
+    // }
 }
 
 Character   &Character::operator=(const Character &other)
@@ -71,13 +71,12 @@ Character   &Character::operator=(const Character &other)
             if (other._slot[i] != NULL)
                 this->_slot[i] = other._slot[i]->clone();
         }
-		this->clearFloor();
-		if (this->_floor)
-        	delete _floor;
+		if (this->_floor != NULL)
+        	delete[] this->_floor;
         this->_floorCapacity = other.getFloorCapacity();
         this->_floorIdx = other.getFloorIdx();
         _floor = new AMateria*[_floorCapacity];
-        for (unsigned int i = 0; i < this->_floorCapacity; ++i)
+        for (unsigned int i = 0; i < this->_floorIdx; ++i)
         {
             if (other._floor[i] == NULL)
                 this->_floor[i] = NULL;
@@ -99,11 +98,6 @@ Character::~Character()
 		}
 	}
 	this->clearFloor();
-	if (this->_floor)
-	{
-		delete[] this->_floor;
-		this->_floor = NULL;
-	}
 }
 
 std::string const   &Character::getName() const
@@ -151,10 +145,13 @@ void    Character::unequip(int idx)
 		std::cout << "Unequip error: character " << this->getName();
 		std::cout << " has nothing equiped." << std::endl;
 	}
-	std::cout << "Character " << this->getName() << " unequiped n* " << idx;
-	std::cout << " of their inventory." << std::endl;
-	this->addToFloor(*this->_slot[idx]);
-	this->_slot[idx] = NULL;
+	else
+	{
+		std::cout << "Character " << this->getName() << " unequiped n* " << idx;
+		std::cout << " of their inventory." << std::endl;
+		this->addToFloor(*this->_slot[idx]);
+		this->_slot[idx] = NULL;
+	}
 }
 
 void    Character::use(int idx, ICharacter &target)
@@ -169,6 +166,8 @@ void    Character::use(int idx, ICharacter &target)
 		std::cout << this->getName() << " ";
 		this->_slot[idx]->use(target);
 	}
+	else
+		std::cout << this->getName() << " does not have anything, in this slot." << std::endl;
 }
 
 void    Character::clearFloor()
@@ -176,10 +175,7 @@ void    Character::clearFloor()
 	for (unsigned int i = 0; i < this->_floorIdx; ++i)
     {
         if (this->_floor[i] != NULL)
-        {
-            delete this->_floor[i];
-            this->_floor[i] = NULL;
-        }
+            delete[] this->_floor;
     }
 	this->_floorIdx = 0;
 }
@@ -239,8 +235,10 @@ void	Character::printMaterias() const
 			std::cout << "Index " << idx << ": " << this->_slot[i]->getType() << std::endl;
 		++idx;	
 	}
-	std::cout << "And also has those elements on the floor:" << std::endl;
+	std::cout << "And there are those elements on the floor:" << std::endl;
 	idx = 0;
+	if (this->getFloorIdx())
+
 	for (unsigned int i = 0; i < this->getFloorIdx(); ++i)
 	{
 		if (this->_floor[i] != NULL)

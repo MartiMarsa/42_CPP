@@ -30,7 +30,8 @@ Ice::~Ice() {}
 
 AMateria* Ice::clone() const
 {
-	return (new Ice(*this));
+	AMateria* ice = new Ice();
+	return (ice);
 }
 
 void Ice::use(ICharacter &target)
