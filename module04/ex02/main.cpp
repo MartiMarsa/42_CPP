@@ -29,3 +29,27 @@ int main()
     delete cat;
     return (0);
 }
+
+// int main()
+// {
+//     Dog perro;
+//     {
+//     Dog gos;
+//     perro.useBrain();
+//     gos = perro;
+//     }
+//     perro.useBrain();
+//     return (0);
+// }
+
+// int main()
+// {
+//     const Animal*   dog = new Dog();
+//     const Animal*   perro = new Dog(*static_cast<const Dog*>(dog));
+
+//     dog->makeSound();
+//     perro->makeSound();
+
+//     delete dog;
+//     delete perro;
+// }
