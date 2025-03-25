@@ -46,14 +46,14 @@ Character::Character(const Character &other)
 	}
     this->_floorCapacity = other.getFloorCapacity();
     this->_floorIdx = 0;
-    // this->_floor = new AMateria*[_floorCapacity];
-    // for (unsigned int i = 0; i < this->_floorIdx; ++i)
-    // {
-    //     if (other._floor[i] == NULL)
-    //         this->_floor[i] = NULL;
-    //     else
-    //         this->_floor[i] = other._floor[i]->clone();
-    // }
+    this->_floor = new AMateria*[_floorCapacity];
+    for (unsigned int i = 0; i < this->_floorIdx; ++i)
+    {
+        if (other._floor[i] == NULL)
+            this->_floor[i] = NULL;
+        else
+            this->_floor[i] = other._floor[i]->clone();
+    }
 }
 
 Character   &Character::operator=(const Character &other)
@@ -89,15 +89,12 @@ Character   &Character::operator=(const Character &other)
 
 Character::~Character()
 {
+	clearFloor();
 	for (int i = 0; i < BAG; ++i)
 	{
-		if (this->_slot[i] != NULL)
-		{
-			delete this->_slot[i];
-			this->_slot[i] = NULL;
-		}
+		delete this->_slot[i];
+		this->_slot[i] = NULL;
 	}
-	this->clearFloor();
 }
 
 std::string const   &Character::getName() const
@@ -174,9 +171,11 @@ void    Character::clearFloor()
 {
 	for (unsigned int i = 0; i < this->_floorIdx; ++i)
     {
-        if (this->_floor[i] != NULL)
-            delete[] this->_floor;
+        delete this->_floor[i];
+		this->_floor[i] = NULL;
     }
+	delete[] this->_floor;
+	this->_floor = NULL;
 	this->_floorIdx = 0;
 }
 

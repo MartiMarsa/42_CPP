@@ -64,10 +64,10 @@ int main()
 	pako->printMaterias();
 	std::cout << std::endl;
 	Character* jotapako = new Character(*pako);
-	// jotapako = pako;
-	// jotapako->printMaterias();
+	jotapako = pako;
+	jotapako->printMaterias();
 	delete pako;
 	delete pedro;
-	delete jotapako;
+	// delete jotapako;
 	return (0);
 }
