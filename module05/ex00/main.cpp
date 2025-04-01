@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 int main(int argc, char **argv)
 {
@@ -21,50 +20,81 @@ int main(int argc, char **argv)
 	std::cout << "TEST Num 1" << std::endl;
 	try 
 	{
-		Form f1("Divorce", 10, 5, false);
-		std::cout << f1 << "\n" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED;
-		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
-	}
-		std::cout << "TEST Num 2" << std::endl;
-	try 
-	{
-		Bureaucrat b2("François Leclerc", 5);
-		std::cout << b2 << std::endl;
-		Form f1("Mortgage", 5, 5, false);
-		std::cout << f1 << std::endl;
-		b2.signForm(f1);
-		std::cout << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED;
-		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
-	}
-		std::cout << "TEST Num 3" << std::endl;
-		try 
-	{
-		Bureaucrat b2("Louis Gérard", 10);
-		std::cout << b2 << std::endl;
-		Form f1("Loan", 5, 5, false);
-		std::cout << f1 << std::endl;
-		b2.signForm(f1);
-		std::cout << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED;
-		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
-	}
+		std::cout << GREEN;
+		Bureaucrat b1("Jean Dupont", 0);
+		std::cout << "This is not going to print" << RESET << std::endl;
 
-	std::cout << "TEST Num 4" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
+	}
+		std::cout << '\n' << "TEST Num 2" << std::endl;
 	try 
 	{
-		Form f1("Alien hunting", 0, 5, false);
-		std::cout << f1 << "\n" << std::endl;
+		std::cout << GREEN;
+		Bureaucrat b2("François Leclerc", 5);
+		std::cout << b2 << RESET << std::endl;
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
+	}
+			std::cout << '\n' << "TEST Num 3" << std::endl;
+	try 
+	{
+		std::cout << GREEN;
+		Bureaucrat b3("Louis Gérard", 151);
+		std::cout << b3 << RESET << std::endl;
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
+	}
+			std::cout << '\n' << "TEST Num 4" << std::endl;
+	try 
+	{
+		std::cout << GREEN;
+		Bureaucrat b3("Louis Gérard", 100);
+		std::cout << b3 << std::endl;
+		b3.upGrade();
+		std::cout << b3 << std::endl;
+		b3.downGrade();
+		std::cout << b3 << RESET << std::endl;
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
+	}
+		std::cout << '\n' << "TEST Num 5" << std::endl;
+	try 
+	{
+		std::cout << GREEN;
+		Bureaucrat b1("Jean Dupont", 1);
+		b1.upGrade();
+		std::cout << "This is not going to print" << RESET << std::endl;
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "Caught an exception " << e.what() << RESET <<  std::endl;
+	}
+			std::cout << '\n' << "TEST Num 6" << std::endl;
+	try 
+	{
+		std::cout << GREEN;
+		Bureaucrat b1("Jean Dupont", 150);
+		b1.downGrade();
+		std::cout << "This is not going to print" << RESET << std::endl;
+
 	}
 	catch(const std::exception& e)
 	{

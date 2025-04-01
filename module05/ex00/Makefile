@@ -10,14 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = form
+NAME = bureaucrat
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 RM = rm -f
 
 SRC =	main.cpp \
-		Bureaucrat.cpp \
-		Form.cpp
+		Bureaucrat.cpp
 D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))

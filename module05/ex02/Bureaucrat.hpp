@@ -16,7 +16,7 @@
 # include <string>
 # include <iostream>
 # include <exception>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 # define TOP_GRADE 1
 # define LAST_GRADE 150
@@ -29,7 +29,7 @@
 # define CYAN    "\033[36m"
 # define RESET   "\033[0m"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -48,7 +48,8 @@ class Bureaucrat
         void                    upGrade();
 		void					downGrade();
 
-        void                    signForm(Form &form);
+        void                    signForm(AForm &form);
+        void                    executeForm(AForm const & form);
 
         class GradeTooHighException : public std::exception
         {

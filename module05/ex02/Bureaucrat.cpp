@@ -75,7 +75,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 	return "Bureaucrat grade too low. Ranges are from 1 to 150.";
 }
 
-void                    Bureaucrat::signForm(Form &form)
+void                    Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
@@ -91,4 +91,9 @@ void                    Bureaucrat::signForm(Form &form)
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &Bcrat)
 {
 	return out << GREEN <<Bcrat.getName() << ", bureaucrat grade " << Bcrat.getGrade() << "." << RESET;
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	std::cout << MAGENTA << this->getName() << " executed " << form.getName() << "." << RESET <<std::endl;
 }

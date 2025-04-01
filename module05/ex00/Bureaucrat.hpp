@@ -16,7 +16,6 @@
 # include <string>
 # include <iostream>
 # include <exception>
-# include "Form.hpp"
 
 # define TOP_GRADE 1
 # define LAST_GRADE 150
@@ -28,8 +27,6 @@
 # define MAGENTA "\033[35m"
 # define CYAN    "\033[36m"
 # define RESET   "\033[0m"
-
-class Form;
 
 class Bureaucrat
 {
@@ -47,8 +44,6 @@ class Bureaucrat
 
         void                    upGrade();
 		void					downGrade();
-
-        void                    signForm(Form &form);
 
         class GradeTooHighException : public std::exception
         {

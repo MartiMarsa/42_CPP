@@ -17,7 +17,10 @@ RM = rm -f
 
 SRC =	main.cpp \
 		Bureaucrat.cpp \
-		Form.cpp
+		AForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp
 D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))
@@ -40,6 +43,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) *_shruberry
 
 re: fclean all
 
