@@ -62,12 +62,17 @@ const char*	AForm::GradeTooHighException::what() const throw()
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return "Grade too low. Ranges are from 1 to 150.";
+	return "Grade too low to proceed";
 }
 
 const char* AForm::AFormAlreadySigned::what() const throw()
 {
 	return "This Aform was already signed.";
+}
+
+const char* AForm::AFormNotSigned::what() const throw()
+{
+	return "This form is not signed yet.";
 }
 
 std::ostream	&operator<<(std::ostream &out, const AForm &form)
@@ -82,5 +87,18 @@ void				AForm::beSigned(const Bureaucrat &Bcrat)
 	if (Bcrat.getGrade() > this->_gradeToSign)
 		throw GradeTooLowException();
 	else
+	{
 		this->_ratified = true;
+		std::cout << GREEN << Bcrat.getName() <<" Signed " << this->getName() << " like a boss.\n" << RESET <<std::endl;
+	}
+}
+
+void				AForm::execute(const Bureaucrat & executor) const
+{
+	(void)executor;
+	if (!_ratified)
+		throw AFormNotSigned();
+	if (_gradeToExecute < this->getGradeToExecute())
+		throw GradeTooLowException();
+	this->executeAction();
 }

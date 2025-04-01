@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarsa-s <mmarsa-s@student.42fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:43:45 by mmarsa-s          #+#    #+#             */
-/*   Updated: 2025/03/31 16:43:47 by mmarsa-s         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:09:36 by mmarsa-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 # include "AForm.hpp"
+# include <cstdlib>  // For rand() and srand()
+# include <ctime>
 
-# define SGRADETOSIGN 145
-# define SGRADETOEXECUTE 137
+# define PGRADETOSIGN 25
+# define PGRADETOEXECUTE 5
 
-class ShrubberyCreationForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 	public:
-		ShrubberyCreationForm();
-		~ShrubberyCreationForm();
-		ShrubberyCreationForm(std::string const & target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
+		PresidentialPardonForm();
+		~PresidentialPardonForm();
+		PresidentialPardonForm(std::string const & target);
+		PresidentialPardonForm(const PresidentialPardonForm &other);
+		PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
 
 		std::string const &			getTarget() const;
 		void						executeAction() const;

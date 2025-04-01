@@ -16,6 +16,7 @@
 # include <string>
 # include <iostream>
 # include <exception>
+# include <fstream>
 # include "Bureaucrat.hpp"
 
 # define TOP_GRADE 1
@@ -37,13 +38,15 @@ class AForm
         AForm(const AForm &other);
         AForm &operator=(const AForm &other);
 
-        std::string const &		getName() const;		
-        unsigned int		    getGradeToSign() const;
-		unsigned int		    getGradeToExecute() const;
-		bool					getSigned() const;
+        std::string const &					getName() const;		
+        unsigned int		    			getGradeToSign() const;
+		unsigned int		   				getGradeToExecute() const;
+		bool								getSigned() const;
+		virtual std::string const &			getTarget() const = 0;
 
-        void                    beSigned(const Bureaucrat &Bcrat);
-        void					execute(Bureaucrat const & executor) const;
+        void                    			beSigned(const Bureaucrat &Bcrat);
+        void								execute(Bureaucrat const & executor) const;
+		virtual void						executeAction() const = 0;
 
 
         class GradeTooHighException : public std::exception
@@ -63,6 +66,12 @@ class AForm
             public:
                 const char* what() const throw();
         };  
+		
+		class AFormNotSigned : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 };
 
 std::ostream	&operator<<(std::ostream &out, const AForm &form);
