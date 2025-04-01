@@ -20,7 +20,8 @@ SRC =	main.cpp \
 		AForm.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
-		PresidentialPardonForm.cpp
+		PresidentialPardonForm.cpp \
+		Intern.cpp
 D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))
