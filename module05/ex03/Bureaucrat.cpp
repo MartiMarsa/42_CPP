@@ -92,3 +92,8 @@ std::ostream	&operator<<(std::ostream &out, const Bureaucrat &Bcrat)
 {
 	return out << GREEN <<Bcrat.getName() << ", bureaucrat grade " << Bcrat.getGrade() << "." << RESET;
 }
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	std::cout << MAGENTA << this->getName() << " executed " << form.getName() << "." << RESET <<std::endl;
+}

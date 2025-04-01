@@ -89,7 +89,7 @@ void				AForm::beSigned(const Bureaucrat &Bcrat)
 	else
 	{
 		this->_ratified = true;
-		std::cout << GREEN << Bcrat.getName() <<" Signed " << this->getName() << " like a boss.\n" << RESET <<std::endl;
+		std::cout << BLUE << Bcrat.getName() <<" Signed " << this->getName() << " like a boss.\n" << RESET <<std::endl;
 	}
 }
 

@@ -49,6 +49,6 @@ std::string const &		PresidentialPardonForm::getTarget() const
 
 void	PresidentialPardonForm::executeAction() const
 {
-	std::cout << "🎤✨ " << _target << " has been pardoned by Zaphod Beeblebrox! 🛸👽";	
+	std::cout << BLUE << "🎤✨ " << _target << " has been pardoned by Zaphod Beeblebrox! 🛸👽" << RESET << std::endl;
 }
 
