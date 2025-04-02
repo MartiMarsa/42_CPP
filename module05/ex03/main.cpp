@@ -38,4 +38,84 @@ int main(int argc, char **argv)
 		std::cerr << RED;
 		std::cerr << "⛔ Caught an exception: " << e.what() << RESET <<  std::endl;
 	}
+	std::cout << "\nTEST Num 2.0" << std::endl;
+	try 
+	{
+		Bureaucrat				Bc1("John Connor", 80);
+		Intern					RandomStronzo;
+		std::cout << Bc1 << "\n" << std::endl;
+		AForm* P1 = RandomStronzo.makeForm("robotomy request", "Skynet");
+		std::cout << P1->getName() << "\n" << std::endl;
+		P1->beSigned(Bc1);
+		P1->execute(Bc1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "⛔ Caught an exception: " << e.what() << RESET <<  std::endl;
+	}
+	std::cout << "\nTEST Num 2.1" << std::endl;
+	try 
+	{
+		Bureaucrat				Bc1("John Connor", 70);
+		Intern					RandomStronzo;
+		std::cout << Bc1 << "\n" << std::endl;
+		AForm* P1 = RandomStronzo.makeForm("robotomy request", "Skynet");
+		std::cout << P1->getName() << "\n" << std::endl;
+		P1->beSigned(Bc1);
+		P1->execute(Bc1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "⛔ Caught an exception: " << e.what() << RESET <<  std::endl;
+	}
+	std::cout << "\nTEST Num 2.2" << std::endl;
+	try 
+	{
+		Bureaucrat				Bc1("John Connor", 30);
+		Intern					RandomStronzo;
+		std::cout << Bc1 << "\n" << std::endl;
+		AForm* P1 = RandomStronzo.makeForm("robotomy request", "Skynet");
+		std::cout << P1->getName() << "\n" << std::endl;
+		P1->beSigned(Bc1);
+		P1->execute(Bc1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "⛔ Caught an exception: " << e.what() << RESET <<  std::endl;
+	}
+		std::cout << "\nTEST Num 3.0" << std::endl;
+	try 
+	{
+		Bureaucrat				Bc1("Willy the Janitor", 100);
+		Intern					RandomStronzo;
+		std::cout << Bc1 << "\n" << std::endl;
+		AForm* P1 = RandomStronzo.makeForm("shrubbery creation", "Ralph");
+		std::cout << P1->getName() << "\n" << std::endl;
+		P1->beSigned(Bc1);
+		P1->execute(Bc1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "⛔ Caught an exception: " << e.what() << RESET <<  std::endl;
+	}
+		std::cout << "\nTEST Num 4.0" << std::endl;
+		try 
+	{
+		Bureaucrat				Bc1("Pa amb tomaquet", 100);
+		Intern					RandomStronzo;
+		std::cout << Bc1 << "\n" << std::endl;
+		AForm* P1 = RandomStronzo.makeForm("espetec casa tarradellas", "granny");
+		std::cout << P1->getName() << "\n" << std::endl;
+		P1->beSigned(Bc1);
+		P1->execute(Bc1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED;
+		std::cerr << "⛔ Caught an exception: " << e.what() << RESET <<  std::endl;
+	}
 }
