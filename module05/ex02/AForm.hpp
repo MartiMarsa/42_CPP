@@ -45,7 +45,7 @@ class AForm
 		virtual std::string const &			getTarget() const = 0;
 
         void                    			beSigned(const Bureaucrat &Bcrat);
-        void								execute(Bureaucrat const & executor) const;
+        void								execute(Bureaucrat const & executor);
 		virtual void						executeAction() const = 0;
 
 

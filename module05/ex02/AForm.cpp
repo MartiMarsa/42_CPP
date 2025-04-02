@@ -79,7 +79,7 @@ std::ostream	&operator<<(std::ostream &out, const AForm &form)
 {
 	return (out << GREEN << "AForm Info:\nName-> " << form.getName() << "\nGrade to sign-> " <<
 			form.getGradeToSign() << "\nGrade to execute-> " << form.getGradeToExecute() <<
-			"\nSigned-> " << form.getSigned()) << RESET;
+			"\nSigned-> " << (form.getSigned() ? "YES" : "NO")) << RESET;
 }
 
 void				AForm::beSigned(const Bureaucrat &Bcrat)
@@ -93,7 +93,7 @@ void				AForm::beSigned(const Bureaucrat &Bcrat)
 	}
 }
 
-void				AForm::execute(const Bureaucrat & executor) const
+void				AForm::execute(const Bureaucrat & executor)
 {
 	(void)executor;
 	if (!_ratified)

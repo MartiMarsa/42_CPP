@@ -31,8 +31,8 @@ class Form
         const unsigned int		_gradeToExecute;
 		bool					_ratified;		
     public:
-        Form(std::string const name, const unsigned int _gradeToSign,
-			const unsigned int _gradeToExecute, bool _signed);
+        Form(std::string const name, const unsigned int gradeToSign,
+			const unsigned int gradeToExecute);
         ~Form();
         Form(const Form &other);
         Form &operator=(const Form &other);

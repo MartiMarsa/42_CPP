@@ -13,10 +13,10 @@
 #include "Form.hpp"
 
 Form::Form(std::string const name, const unsigned int gradeToSign,
-	const unsigned int gradeToExecute, bool ratified) : _name(name),
-	_gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute),
-	_ratified(ratified)
+	const unsigned int gradeToExecute) : _name(name),
+	_gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
+	this->_ratified = false;
 	if (_gradeToExecute < TOP_GRADE || _gradeToSign < TOP_GRADE)
 		throw GradeTooHighException();
 	if (_gradeToExecute > LAST_GRADE || _gradeToSign > LAST_GRADE)
@@ -74,7 +74,7 @@ std::ostream	&operator<<(std::ostream &out, const Form &form)
 {
 	return (out << GREEN << "Form Info:\nName-> " << form.getName() << "\nGrade to sign-> " <<
 			form.getGradeToSign() << "\nGrade to execute-> " << form.getGradeToExecute() <<
-			"\nSigned-> " << form.getSigned()) << RESET;
+			"\nSigned-> " << (form.getSigned() ? "YES" : "NO")) << RESET;
 }
 
 void				Form::beSigned(const Bureaucrat &Bcrat)

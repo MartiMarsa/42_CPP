@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	std::cout << "TEST Num 1" << std::endl;
 	try 
 	{
-		Form f1("Divorce", 10, 5, false);
+		Form f1("Divorce", 10, 5);
 		std::cout << f1 << "\n" << std::endl;
 	}
 	catch(const std::exception& e)
@@ -34,9 +34,10 @@ int main(int argc, char **argv)
 	{
 		Bureaucrat b2("François Leclerc", 5);
 		std::cout << b2 << std::endl;
-		Form f1("Mortgage", 5, 5, false);
+		Form f1("Mortgage", 5, 5);
 		std::cout << f1 << std::endl;
 		b2.signForm(f1);
+		std::cout << f1 << std::endl;
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
@@ -49,7 +50,7 @@ int main(int argc, char **argv)
 	{
 		Bureaucrat b2("Louis Gérard", 10);
 		std::cout << b2 << std::endl;
-		Form f1("Loan", 5, 5, false);
+		Form f1("Loan", 5, 5);
 		std::cout << f1 << std::endl;
 		b2.signForm(f1);
 		std::cout << std::endl;
@@ -63,7 +64,7 @@ int main(int argc, char **argv)
 	std::cout << "TEST Num 4" << std::endl;
 	try 
 	{
-		Form f1("Alien hunting", 0, 5, false);
+		Form f1("Alien hunting", 0, 5);
 		std::cout << f1 << "\n" << std::endl;
 	}
 	catch(const std::exception& e)
