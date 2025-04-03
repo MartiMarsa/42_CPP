@@ -54,5 +54,5 @@ void    ScalarConverter::convert(std::string & value)
 
 const char*  badInput::what() const throw()
 {
-	return "wrong input my friend."
+	return "wrong input my friend.";
 }
