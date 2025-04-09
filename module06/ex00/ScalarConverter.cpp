@@ -31,24 +31,21 @@ void    ScalarConverter::convert(std::string & value)
 {
     size_t      len = value.length();
     dataType    type = whichType(value, len);
+	double		db = cast(value, len);
 
 	switch (type)
 	{
 		case SPECIAL:
 			printSpecial(value);
 			break;
-		case CHAR:
-			toChar(value, len);
+		case BADTYPE:
+			throw badInput();
 			break;
-		case INT:
-			toInt(value);
-			break;
-		case FLOAT:
-			toFloat(value);
-			break;
-		case DOUBLE:
-			toDouble(value);
-			break;
+		default:
+			toChar(value, type, db);
+			toInt(type, db);
+			toFloat(value, type, db);
+			toDouble(value, type, db);
 	}
 }
 

@@ -15,14 +15,16 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 RM = rm -f
 
-SRCS =	ScalarConverter.cpp \
-		main.cpp \
+SRC =	ScalarConverter.cpp \
+		WhichType.cpp \
+		ActualConverter.cpp \
+		main.cpp
 D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))
 
 $(D_OBJS)%.o: %.cpp Makefile
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: dir $(NAME)
 
@@ -34,8 +36,8 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) -r obj/
+	$(RM) $(OBJS) $(DEPS)
+	$(RM) -r $(D_OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
