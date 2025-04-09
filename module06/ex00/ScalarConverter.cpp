@@ -44,8 +44,8 @@ void    ScalarConverter::convert(std::string & value)
 		default:
 			toChar(value, type, db);
 			toInt(type, db);
-			toFloat(value, type, db);
-			toDouble(value, type, db);
+			toFloat(value, type, db, len);
+			toDouble(value, type, db, len);
 	}
 }
 

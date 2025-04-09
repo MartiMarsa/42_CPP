@@ -50,22 +50,33 @@ void		toInt(dataType type, double db)
 		std::cout << "impossible: " << (db < 0 ? "underflow" : "overflow") << std::endl;
 }
 
-void		toFloat(std::string &data, dataType type, double db)
+void		toFloat(std::string &data, dataType type, double db, size_t len)
 {
-	(void)db;
-	(void)type;
-	(void)data;
 	std::cout << "float: ";
-	std::cout << std::endl;
+	if (type == FLOAT || type == DOUBLE)
+	{
+		size_t	dot = data.find('.');
+		size_t	f = data.find('f');
+		std::cout << std::fixed << std::setprecision((f == std::string::npos ? len - ++dot
+												: f - ++dot)) << db << "f" << std::endl;
+	}
+	else if(type == CHAR || type == INT)
+		std::cout << db << ".0f" << std::endl;
 }
 
-void		toDouble(std::string &data, dataType type, double db)
+void		toDouble(std::string &data, dataType type, double db, size_t len)
 {
-	(void)db;
-	(void)type;
-	(void)data;
+
 	std::cout << "double: ";
-	std::cout << std::endl;	
+	if (type == FLOAT || type == DOUBLE)
+	{
+		size_t	dot = data.find('.');
+		size_t	f = data.find('f');
+		std::cout << std::fixed << std::setprecision((f == std::string::npos ? len - ++dot
+												: f - ++dot)) << db << std::endl;
+	}
+	else if(type == CHAR || type == INT)
+		std::cout << db << ".0" << std::endl;
 }
 
 double	cast(std::string & value, size_t &len)

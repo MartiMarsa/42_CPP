@@ -19,6 +19,7 @@
 # include <cmath>
 # include <climits>
 # include <sstream>
+#include <iomanip>
 
 enum	dataType
 {
@@ -52,8 +53,8 @@ dataType	whichType(const std::string &data, const size_t &len);
 void		printSpecial(const std::string &data);
 void		toChar(std::string &data, dataType type, double db);
 void		toInt(dataType type, double db);
-void		toFloat(std::string &data, dataType type, double db);
-void		toDouble(std::string &data, dataType type, double db);
+void		toFloat(std::string &data, dataType type, double db, size_t len);
+void		toDouble(std::string &data, dataType type, double db, size_t len);
 double		cast(std::string & data, size_t &len);
 
 #endif
