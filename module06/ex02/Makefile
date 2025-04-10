@@ -5,37 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmarsa-s <mmarsa-s@student.42fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/10 11:50:46 by mmarsa-s          #+#    #+#              #
-#    Updated: 2025/04/10 11:50:47 by mmarsa-s         ###   ########.fr        #
+#    Created: 2025/04/10 19:42:48 by mmarsa-s          #+#    #+#              #
+#    Updated: 2025/04/10 19:42:51 by mmarsa-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = serializer
+NAME = realType
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRC =	main.cpp \
-		Serializer.cpp
-D_OBJ = obj/
-OBJS = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
-DEPS = $(addprefix $(D_OBJ), $(SRC:.cpp=.d))
-
-$(D_OBJ)%.o: %.cpp Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
+		realType.cpp
+D_OBJS = obj/
+OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
+DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))
 
 all: dir $(NAME)
 
 dir:
-	@mkdir -p obj/
+	@mkdir -p
 
--include $(DEPS)
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(D_OBJS)%.o: %.cpp Makefile
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS) $(DEPS)
-	$(RM) -r $(D_OBJ)
+	$(RM) -r obj/
 
 fclean: clean
 	$(RM) $(NAME)
@@ -43,3 +39,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: all dir clean fclean re
+
+-include $(DEPS)
+$(NAME): $(OBJS) $(DEPS)
+
