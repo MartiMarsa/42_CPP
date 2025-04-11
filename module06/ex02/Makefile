@@ -21,13 +21,17 @@ D_OBJS = obj/
 OBJS = $(addprefix $(D_OBJS), $(SRC:.cpp=.o))
 DEPS = $(addprefix $(D_OBJS), $(SRC:.cpp=.d))
 
+$(D_OBJS)%.o: %.cpp Makefile
+	$(CC) $(CFLAGS) -c $< -o $@
+
 all: dir $(NAME)
 
 dir:
-	@mkdir -p
+	@mkdir -p obj/
 
-$(D_OBJS)%.o: %.cpp Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
+-include $(DEPS)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS) $(DEPS)
@@ -39,7 +43,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all dir clean fclean re
-
--include $(DEPS)
-$(NAME): $(OBJS) $(DEPS)
 
