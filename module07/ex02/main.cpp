@@ -14,13 +14,20 @@
 
 int	main(void)
 {
+	Array<int> roulette(5);
 	try
 	{
-		Array[] animals = Array()
+		for (unsigned int i = 0; i != roulette.size(); ++i)
+		{
+			int number = rand();
+			roulette[i] = number;
+		}
+		std::cout << roulette << std::endl;
+
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Caught an exeption " << e.what() << '\n';
 	}
-	
+	return (0);
 }

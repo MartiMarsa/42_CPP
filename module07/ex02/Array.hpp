@@ -17,6 +17,7 @@
 # include <exception>
 # include <string>
 # include <iostream>
+# include <cstdlib>
 
 template<typename T>
 class Array
@@ -34,7 +35,16 @@ class Array
 		T& operator[](unsigned int index);
 		const T& operator[](unsigned int index) const;
 		unsigned int	size(void) const;
+		T*		getElement() const;
 };
+
+template<typename T>
+std::ostream &	operator<<(std::ostream & os, Array<T> & r)
+{
+	for (unsigned int i = 0; i != r.size(); ++i)
+		os << "Array[" << i << "] = " << r[i] << std::endl;
+	return os;
+}
 
 # include "Array.tpp"
 

@@ -22,28 +22,15 @@ Array<T>::~Array()
 }
 
 template<typename T>
-void initializeArray(T* arr, unsigned int n)
-{
-	for (unsigned int i = 0; i < n; ++i)
-		_element[i] = NULL;
-}
-
-template<typename T>
-void initializeArray(T& arr, unsigned int n) {}
-
-template<typename T>
-Array<T>::Array(unsigned int n) : _element(new T[n]()), _len(n)\
-{
-	initializeArray(this->_element, this->_len);
-}
+Array<T>::Array(unsigned int n) : _element(new T[n]()), _len(n) {}
 
 template<typename T>
 Array<T>::Array(const Array &other)
 {
 	if (this != &other)
 	{	
-		for (unsigned int i = 0; i < n; ++i)
-			this->_element[i] = other._element;
+		for (unsigned int i = 0; i != _len; ++i)
+			this->_element[i] = other._element[i];
 	}
 }
 
@@ -52,8 +39,8 @@ Array<T> &Array<T>::operator=(const Array &other)
 {
 	if (this != &other)
 	{	
-		for (unsigned int i = 0; i < n; ++i)
-			this->_element[i] = other._element;
+		for (unsigned int i = 0; i != _len; ++i)
+			this->_element[i] = other._element[i];
 	}
 	return (*this);
 }
@@ -78,4 +65,10 @@ template<typename T>
 unsigned int	Array<T>::size(void) const
 {
 	return this->_len;
+}
+
+template<typename T>
+T*	Array<T>::getElement() const
+{
+	return (this->_element);
 }
