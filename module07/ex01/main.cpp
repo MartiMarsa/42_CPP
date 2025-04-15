@@ -16,16 +16,12 @@ int main(void)
 {
     int	array[] = {0,1,2,3,4,5};
 
-	iter(array, 6, hello);
+	iter(array, 6, hello<int>);
 	std::cout << '\n';
 
-	const char* abc = "abcdefg";
-
-	iter(abc, 7, hello);
-	std::cout << '\n';
 
 	std::string names[] = {"ALBERTO", "PEDRO", "OLIVIA", "ARIANDA", "DANIELLE"};
-	iter(names, 5, hello);
+	iter(names, 5, hello<std::string>);
 	std::cout << std::endl;  
 
 	return (0);

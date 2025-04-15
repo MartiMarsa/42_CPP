@@ -17,7 +17,7 @@
 # include <iostream>
 
 template <typename T>
-void	hello(T a)
+void	hello(const T&	 a)
 {
 	std::cout << "Member of array " << a << " says hello!" << std::endl; 
 }
@@ -31,5 +31,13 @@ void	iter(T* array, size_t len, void (*f)(const T &))
 	}
 }
 
+template <typename T>
+void	iter(T* array, size_t len, void (*f)(T &))
+{
+	for (size_t i = 0; i != len; ++i)
+	{
+		f(array[i]);
+	}
+}
 #endif
 

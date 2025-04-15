@@ -23,10 +23,15 @@ int	main(void)
 	std::cout << "Then we aply swap()\n"; 
 	swap (a, b);
 	std::cout << "a = " << a << " b = " << b << "\n";
-
+	std::cout << "Which is greater a or b? "<< (max(a,b) == a ? " a is greater." : " b is greater.");
+	std::cout << std::endl;
+	std::cout << "Which is smaller a or b? "<< (min(a,b) == a ? " a is smaller." : " b is smaller.");
+	std::cout << std::endl;
 	std::cout << "c = " << c << " d = " << d << "\n";
 	std::cout << "Then we aply swap()\n";
 	swap (c, d);
 	std::cout << "c = " << c << " d = " << d << "\n";
+
+
 	return (0);
 }
