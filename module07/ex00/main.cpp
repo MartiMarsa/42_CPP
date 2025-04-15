@@ -19,11 +19,14 @@ int	main(void)
 	char c = 'c';
 	char d = 'd';
 
-	std::cout << a << "= " << a << "\n";
-	
-	;
+	std::cout << "a = " << a << " b = " << b << "\n";
+	std::cout << "Then we aply swap()\n"; 
+	swap (a, b);
+	std::cout << "a = " << a << " b = " << b << "\n";
+
+	std::cout << "c = " << c << " d = " << d << "\n";
+	std::cout << "Then we aply swap()\n";
 	swap (c, d);
-	std::cout << a << b << std::endl;
-	std::cout << c << d << std::endl;
+	std::cout << "c = " << c << " d = " << d << "\n";
 	return (0);
 }

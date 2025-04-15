@@ -32,10 +32,10 @@ class Array
 		Array(const Array &other);
 		Array &operator=(const Array &other);
 
-		T& operator[](unsigned int index);
-		const T& operator[](unsigned int index) const;
+		T& 				operator[](unsigned int index);
+		const T& 		operator[](unsigned int index) const;
 		unsigned int	size(void) const;
-		T*		getElement() const;
+		T*				getRawPointer() const;
 };
 
 template<typename T>
