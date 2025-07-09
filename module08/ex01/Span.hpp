@@ -19,6 +19,7 @@
 # include <exception>
 # include <algorithm>
 # include <climits>
+# include <numeric>
 
 class Span
 {
@@ -32,12 +33,24 @@ class Span
 		Span &operator=(const Span &other);
 		~Span();
 
+		template <typename Iterator>
+		void	addNumber(Iterator it1, Iterator it2);
+		
 		void						addNumber(int num);
 		int							shortestSpan();
 		int							longestSpan();
 		const std::vector<int> &	getNumbers() const;
 		int							getNumberAt(int index) const;
 };
+
+
+	template <typename Iterator>
+	void	Span::addNumber(Iterator it1, Iterator it2)
+	{
+		if (std::distance(it1, it2) + this->_numbers.size() > this->_N)
+			throw std::runtime_error("Not enough space to add numbers.");
+		this->_numbers.insert(this->_numbers.end(), it1, it2);
+	}
 
 #endif
 
