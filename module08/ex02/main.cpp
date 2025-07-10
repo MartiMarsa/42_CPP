@@ -97,7 +97,7 @@ int main()
 		++lrit;
 	}
 
-	std::cout << GREEN << "\n✅ All tests completed successfully!\n" << RESET;
-
+	std::cout << BLUE << "\n✅ All tests completed successfully!\n" << RESET;
+	std::cout << BLUE << "\n Thanks for using the service. Come back soon! 😃" << RESET << std::endl;
 	return 0;
 }

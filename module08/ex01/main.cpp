@@ -12,98 +12,142 @@
 
 #include "Span.hpp"
 #include "../ex00/colours.hpp"
+#include <vector>
+#include <list>
+#include <ctime>     // for time()
+#include <cstdlib>   // for rand()
 
+// Utility to generate random std::vector<int>
 std::vector<int> generateRandomVector(int size, int minValue, int maxValue) {
 	std::vector<int> v;
-
-	for (int i = 0; i < size; ++i) {
-		int n = minValue + rand() % (maxValue - minValue + 1);
-		v.push_back(n);
-	}
-
+	for (int i = 0; i < size; ++i)
+		v.push_back(minValue + rand() % (maxValue - minValue + 1));
 	return v;
+}
+
+// Utility to generate random std::list<int>
+std::list<int> generateRandomList(int size, int minValue, int maxValue) {
+	std::list<int> lst;
+	for (int i = 0; i < size; ++i)
+		lst.push_back(minValue + rand() % (maxValue - minValue + 1));
+	return lst;
 }
 
 int	main(void)
 {
-	std::cout << GREEN << "TEST num 1. Is a vector that stores a maximum of 10 integers from ";
-	std::cout << "0 to 9.\n" << RESET;
+	srand(time(NULL)); // Seed RNG once
 
-	try
-	{
+	std::cout << GREEN << "TEST 1: Filling Span with sequential values from 0 to 9 (vector).\n" << RESET;
+	try {
 		Span numbers(10);
 		for (int i = 0; i < 10; ++i)
 			numbers.addNumber(i);
-		std::cout << "Shortest span is " << numbers.shortestSpan() << std::endl;
-		std::cout << "Longest span is " << numbers.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Caught an exception. " << e.what() << '\n';
+		std::cout << CYAN << "✅ Shortest span: " << numbers.shortestSpan() << std::endl;
+		std::cout << "✅ Longest span: " << numbers.longestSpan() << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Exception: " << e.what() << RESET << std::endl;
 	}
 
-	std::cout << GREEN << "\nTEST num 2. We use addnumber() in a 0 size vector.\n" << RESET;
-	try
-	{
+	std::cout << GREEN << "\nTEST 2: Attempting to add a number to a Span of size 0.\n" << RESET;
+	try {
 		Span numbers(0);
 		numbers.addNumber(1);
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Exception: " << e.what() << RESET << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << "Caught an exception. " << e.what() << '\n' << RESET;
-	}
-	
-	std::cout << GREEN << "\nTEST num 3. We use addnumber() overload to add 10000 numbers from ";
-	std::cout << "0 to 9999.\n" << RESET;
 
-	try
-	{
+	std::cout << GREEN << "\nTEST 3: Adding 10,000 values to a Span using vector and range overload.\n" << RESET;
+	try {
 		Span numbers(10000);
-		std::vector<int> bigPapa(10000);
-		for (size_t i = 0; i < bigPapa.size(); ++i)
-			bigPapa.at(i) = i;
-		numbers.addNumber(bigPapa.begin(), bigPapa.end());
-		
-		std::cout << "Shortest span is " << numbers.shortestSpan() << std::endl;
-		std::cout << "Longest span is " << numbers.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Caught an exception. " << e.what() << '\n';
+		std::vector<int> big(10000);
+		for (int i = 0; i < 10000; ++i)
+			big[i] = i;
+		numbers.addNumber(big.begin(), big.end());
+		std::cout << CYAN << "✅ Shortest span: " << numbers.shortestSpan() << std::endl;
+		std::cout << "✅ Longest span: " << numbers.longestSpan() << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Exception: " << e.what() << RESET << std::endl;
 	}
 
-	std::cout << GREEN << "\nTest num 4. We generate a size 100 vector with random and unordered numbers ";
-	std::cout << "from 0 to 1000000.\n" << RESET;
-
-	try
-	{
+	std::cout << GREEN << "\nTEST 4: Filling Span with 100 random values (vector).\n" << RESET;
+	try {
 		Span numbers(100);
-		std::vector<int> random = generateRandomVector(100, 0, 1000000);
-		numbers.addNumber(random.begin(), random.end());
-
-		std::cout << "Shortest span is " << numbers.shortestSpan() << std::endl;
-		std::cout << "Longest span is " << numbers.longestSpan() << std::endl;
-	}
-	
-	catch(const std::exception& e)
-	{
-		std::cerr << "Caught an exception. " << e.what() << '\n';
+		std::vector<int> randVec = generateRandomVector(100, 0, 100000);
+		numbers.addNumber(randVec.begin(), randVec.end());
+		std::cout << CYAN << "✅ Shortest span: " << numbers.shortestSpan() << std::endl;
+		std::cout << "✅ Longest span: " << numbers.longestSpan() << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Exception: " << e.what() << RESET << std::endl;
 	}
 
-	std::cout << GREEN << "\nTEST num 5. Try to find span in an empty vector.\n" << RESET;
-
-	try
-	{
+	std::cout << GREEN << "\nTEST 5: Attempting to calculate spans on an empty Span.\n" << RESET;
+	try {
 		Span numbers(10);
-
-		std::cout << "Shortest span is " << numbers.shortestSpan() << std::endl;
-		std::cout << "Longest span is " << numbers.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << numbers.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << numbers.longestSpan() << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Exception: " << e.what() << RESET << std::endl;
 	}
 
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << "Caught an exception. " << e.what() << '\n';
+	std::cout << GREEN << "\nTEST 6: Using std::list<int> with random values to test template range.\n" << RESET;
+	try {
+		Span numbers(50);
+		std::list<int> randList = generateRandomList(50, 0, 1000);
+		numbers.addNumber(randList.begin(), randList.end());
+		std::cout << CYAN << "✅ Shortest span: " << numbers.shortestSpan() << std::endl;
+		std::cout << "✅ Longest span: " << numbers.longestSpan() << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Exception: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << GREEN << "\nTEST 7: Add only one number and try to compute span.\n" << RESET;
+	try {
+		Span numbers(5);
+		numbers.addNumber(42);
+		std::cout << "Shortest span: " << numbers.shortestSpan() << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "✔️ Caught expected exception: " << e.what() << RESET << std::endl;
+	}
+
+	std::cout << GREEN << "\nTEST 8: Try to overflow Span capacity.\n" << RESET;
+	try {
+		Span numbers(3);
+		numbers.addNumber(10);
+		numbers.addNumber(20);
+		numbers.addNumber(30);
+		std::cout << "Attempting to add a 4th number...\n";
+		numbers.addNumber(40); // should throw
+		std::cout << RED << "❌ Error: No exception thrown when overflowing." << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "✔️ Caught expected exception: " << e.what() << RESET << std::endl;
+	}
+
+	std::cout << GREEN << "\nTEST 9: Use negative and unordered values.\n" << RESET;
+	try {
+		Span numbers(5);
+		numbers.addNumber(-100);
+		numbers.addNumber(200);
+		numbers.addNumber(0);
+		numbers.addNumber(42);
+		numbers.addNumber(-50);
+		std::cout << "✅ Shortest span: " << CYAN << numbers.shortestSpan() << RESET << std::endl;
+		std::cout << "✅ Longest span:  " << CYAN << numbers.longestSpan() << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Error: " << e.what() << RESET << std::endl;
+	}
+
+	std::cout << GREEN << "\nTEST 10: Massive random test with 50,000 numbers.\n" << RESET;
+	try {
+		Span numbers(50000);
+		std::vector<int> large = generateRandomVector(50000, 0, 1000000);
+		numbers.addNumber(large.begin(), large.end());
+		std::cout << "✅ Shortest span: " << CYAN << numbers.shortestSpan() << RESET << std::endl;
+		std::cout << "✅ Longest span:  " << CYAN << numbers.longestSpan() << RESET << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED << "❌ Error: " << e.what() << RESET << std::endl;
+	}
+
+	std::cout << BLUE << "\n✅ All tests completed successfully!\n" << RESET;
+	std::cout << BLUE << "\n Thanks for using the service. Come back soon! 😃" << RESET << std::endl;
 	return (0);
 }
