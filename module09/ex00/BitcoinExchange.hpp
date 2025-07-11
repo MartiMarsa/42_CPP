@@ -16,5 +16,8 @@
 # include <iostream>
 # include <string>
 # include <fstream>
+# include <sstream>
+# include <map>
+# include <ctype.h>
 
 #endif
