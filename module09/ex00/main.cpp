@@ -12,6 +12,70 @@
 
 #include "BitcoinExchange.hpp"
 
+int	stringToInt(const std::string &str)
+{
+	std::istringstream iss(str);
+	int result;
+	iss >> result;
+	if (iss.fail())
+		throw std::runtime_error("Convertion failed.");
+	return result;
+}
+
+float	strToFloat(const std::string &str)
+{
+	std::istringstream	iss(str);
+	float	result;
+	iss >> result;
+	if (iss.fail())
+		throw std::runtime_error("Error in conversion.");
+	return result;
+}
+
+bool    isValidRateFormat(const std::string &str, bool &isFloat)
+{
+    size_t dot = str.find('.');
+	float	rateStr;
+    if (dot != std::string::npos)
+	{
+        isFloat = true;
+    	for (size_t i = 0; i != dot; ++i)
+    	{
+    	    if (!isdigit(str.at(i)))
+    	        return false;
+    	}
+    	for (size_t i = ++dot; i != str.size(); ++i)
+    	{
+    	    if (!isdigit(str.at(i)))
+    	        return false;
+    	}
+		try {
+			rateStr = strToFloat(str);
+		}
+		catch(const std::exception &e) {
+			std::cerr << "Caught an exception: " << e.what() << std::endl;
+		}
+		if (rateStr < 0)
+			return false;
+	}
+	else {
+		for (size_t i = 0; i != str.size(); ++i)
+		{
+			if (!isdigit(str.at(i)))
+				return false;
+		}
+		try {
+			rateStr = strToFloat(str);
+		}
+		catch(const std::exception &e) {
+			std::cerr << "Caught an exception: " << e.what() << std::endl;
+		}
+		if (rateStr < 0)
+			return false;
+	}
+    return true;
+}
+
 bool	isValidDateFormat(const std::string &date)
 {
 	if (date.length() != 10)
@@ -25,13 +89,24 @@ bool	isValidDateFormat(const std::string &date)
 		if (!isdigit(date.at(i)))
 			return false;
 	}
-
-	// missing validations
-	
+	int year, month, day;
+	try {
+	year = stringToInt(date.substr(0, 4));
+	month = stringToInt(date.substr(5, 2));
+	day = stringToInt(date.substr(8, 2));
+	if (year > 9999 || year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
+		return false;
+	}
+	catch(std::exception &e) {
+		std::cerr << "Caught an exception: " << e.what() << std::endl;
+	}
+	return true;
 }
 bool	loadCsvToMap(const std::string &file, std::map<std::string, float> &btcDataBase)
 {
 	std::ifstream	dB(file.c_str());
+	bool	flag = false;
+	bool	&isFloat = flag;
 	if (!dB.is_open())
 	{
 		std::cerr << "Error: This program needs \"data.csv\" in the same executable's ";
@@ -58,7 +133,16 @@ bool	loadCsvToMap(const std::string &file, std::map<std::string, float> &btcData
 			std::cerr << "Error: Invalid line. Bad date format." << std::endl;
 			continue; 
 		}
+		if (!std::getline(ss, rateStr) || !isValidRateFormat(rateStr, isFloat))
+		{
+			std::cerr << "Error: Invalid line. Bad Rate format." << std::endl;
+			continue;
+		}
+		std::pair<std::string, float> dateRate = std::make_pair(date, strToFloat(rateStr));
+		// std::cout << "Date -> " << dateRate.first << " Rate -> " << dateRate.second << std::endl;
+		btcDataBase.insert(dateRate);
 	}
+	return true;
 }
 
 bool	isFileTxt(const std::string &filename)
@@ -91,7 +175,10 @@ int main(int argc, char **argv)
 	std::map<std::string, float>	btcDataBase;
 
 	loadCsvToMap("data.csv", btcDataBase);
-	
-	std::cout << "ok" << std::endl;
+	std::map<std::string, float>::const_iterator	it = btcDataBase.begin();
+	for (; it != btcDataBase.end(); ++it)
+	{
+		std::cout << "Date -> " << it->first << " Rate -> " << it->second << std::endl;
+	}
 	return 0;
 }
