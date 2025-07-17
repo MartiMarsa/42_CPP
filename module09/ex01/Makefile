@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmarsa-s <mmarsa-s@student.42fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/14 12:09:23 by mmarsa-s          #+#    #+#              #
-#    Updated: 2025/07/14 12:09:24 by mmarsa-s         ###   ########.fr        #
+#    Created: 2025/07/17 19:21:06 by mmarsa-s          #+#    #+#              #
+#    Updated: 2025/07/17 19:21:10 by mmarsa-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = btc
+NAME = RPN
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 RM = rm -f
 
 SRC =	main.cpp \
-		BitcoinExchange.cpp
+		RPN.cpp
 D_OBJ = obj/
 OBJ = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
 DEP = $(addprefix $(D_OBJ), $(SRC:.cpp=.d))
