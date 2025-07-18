@@ -12,7 +12,23 @@
 
 #include "RPN.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
+    if (argc != 2)
+    {
+        std::cerr << "Here is an example of standard usage:\n";
+        std::cerr << "$> ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
+		return 1;
+    }
+    RPN rpn;
+
+    if (rpn.validateInput(argv[1]))
+           rpn.reversePolishNotation(argv[1]);
+    else
+    {
+        std::cerr << "Error: bad input. Here is an example of standard usage:\n";
+        std::cerr << "$> ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
+		return 1;
+    }
     return 0;
 }

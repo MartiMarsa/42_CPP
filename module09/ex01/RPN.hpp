@@ -15,16 +15,25 @@
 
 #include <stack>
 #include <iostream>
+#include <sstream>
 
 class RPN
 {
 private:
-    std::stack<int> _stack;
+    std::stack<long long int> _stack;
 public:
     RPN();
     ~RPN();
     RPN(const RPN &other);
 	RPN &operator=(const RPN &other);
+
+	bool	isAllowedCharacter(const std::string & input);
+    bool	validateInput(const std::string & input);
+    void    reversePolishNotation(const std::string & input);
 };
+
+bool	ft_isDigit(char c);
+bool	ft_isSpace(char c);
+bool	ft_isOperator(char c);
 
 #endif
