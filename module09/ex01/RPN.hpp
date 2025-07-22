@@ -16,6 +16,7 @@
 #include <stack>
 #include <iostream>
 #include <sstream>
+#include <climits>
 
 class RPN
 {

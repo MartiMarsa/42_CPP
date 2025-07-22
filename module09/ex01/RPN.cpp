@@ -25,6 +25,16 @@ RPN &RPN::operator=(const RPN &other)
     return *this;
 }
 
+bool	ft_strToLL(const std::string &token, long long int &num)
+{
+	std::stringstream	ss(token);
+
+	ss >> num;
+	if (ss.fail() || !ss.eof())
+		return false;
+	return true;
+}
+
 bool    RPN::isAllowedCharacter(const std::string & input)
 {
     for (size_t i = 0; i != input.size(); ++i)
@@ -47,14 +57,73 @@ bool    RPN::validateInput(const std::string & input)
 
 void    RPN::reversePolishNotation(const std::string & input)
 {
-	std::stringstream ss(input);
-    std::string token;
+	std::stringstream	ss(input);
+    std::string			token;
     
 	while (ss >> token)
 	{
+		long long int		num = 0;
+		long long int		operant_a = 0;
+		long long int		operant_b = 0;
+
 		if (ft_isDigit(token.at(0)))
 		{
-			long long int lli = ft_strToLL(token);
+			if (!ft_strToLL(token, num))
+				std::cerr << "Shit happened." << std::endl;
+			_stack.push(num);
+		}
+		if (ft_isOperator(token.at(0)))
+		{
+			if (token.at(0) == '+')
+			{
+				operant_a = _stack.top();
+				_stack.pop();
+				operant_b = _stack.top();
+				_stack.pop();
+				operant_a += operant_b;
+				if (operant_a > INT_MIN && operant_a < INT_MAX)
+					_stack.push(operant_a);
+				else
+					throw std::range_error("Operation out of INT limits.");
+			}
+			else if (token.at(0) == '-')
+			{
+				operant_a = _stack.top();
+				_stack.pop();
+				operant_b = _stack.top();
+				_stack.pop();
+				operant_a = operant_b - operant_a;
+				if (operant_a > INT_MIN && operant_a < INT_MAX)
+					_stack.push(operant_a);
+				else
+					throw std::range_error("Operation out of INT limits.");
+				_stack.push(operant_a);
+			}
+			else if (token.at(0) == '*')
+			{
+				operant_a = _stack.top();
+				_stack.pop();
+				operant_b = _stack.top();
+				_stack.pop();
+				operant_a *= operant_b;
+				if (operant_a > INT_MIN && operant_a < INT_MAX)
+					_stack.push(operant_a);
+				else
+					throw std::range_error("Operation out of INT limits.");
+				_stack.push(operant_a);
+			}
+			else if (token.at(0) == '/') 
+			{
+				operant_a = _stack.top();
+				_stack.pop();
+				operant_b = _stack.top();
+				_stack.pop();
+				if (operant_a != 0)
+					operant_a = operant_b / operant_a;
+				else
+					throw std::runtime_error("Division by zero.");
+				_stack.push(operant_a);
+			}
 		}
 	}
 	while (!_stack.empty())
@@ -83,9 +152,4 @@ bool	ft_isOperator(char c)
 	if (c == '+' || c == '-' || c == '*' || c == '/')
 		return true;
 	return false;
-}
-
-long long int	ft_strToLL(const std::string &token)
-{
-	
 }
