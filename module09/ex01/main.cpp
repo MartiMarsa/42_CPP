@@ -21,14 +21,20 @@ int main(int argc, char **argv)
 		return 1;
     }
     RPN rpn;
-
-    if (rpn.validateInput(argv[1]))
-           rpn.reversePolishNotation(argv[1]);
-    else
+    try
     {
-        std::cerr << "Error: bad input. Here is an example of standard usage:\n";
-        std::cerr << "$> ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
-		return 1;
+        if (rpn.validateInput(argv[1]))
+           rpn.reversePolishNotation(argv[1]);
+    	else
+    	{
+        	std::cerr << "Error: bad input. Here is an example of standard usage:\n";
+        	std::cerr << "$> ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
+			return 1;
+    	}
     }
-    return 0;
+    catch(const std::exception& e)
+    {
+        std::cerr << RED << "⚠️ Caught an exception: " << e.what() << "⚠️" << RESET << '\n';
+    }
+        return 0;
 }

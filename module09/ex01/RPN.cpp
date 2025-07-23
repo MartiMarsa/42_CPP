@@ -69,68 +69,71 @@ void    RPN::reversePolishNotation(const std::string & input)
 		if (ft_isDigit(token.at(0)))
 		{
 			if (!ft_strToLL(token, num))
-				std::cerr << "Shit happened." << std::endl;
+			{	
+				std::cerr << "Error: bad input. Here is an example of standard usage:\n";
+        		std::cerr << "$> ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
+				return ;
+			}
 			_stack.push(num);
 		}
 		if (ft_isOperator(token.at(0)))
 		{
-			if (token.at(0) == '+')
+			if(_stack.size() >= 2)
 			{
-				operant_a = _stack.top();
-				_stack.pop();
-				operant_b = _stack.top();
-				_stack.pop();
-				operant_a += operant_b;
-				if (operant_a > INT_MIN && operant_a < INT_MAX)
-					_stack.push(operant_a);
-				else
-					throw std::range_error("Operation out of INT limits.");
+				if (token.at(0) == '+')
+				{
+					operant_a = _stack.top();
+					_stack.pop();
+					operant_b = _stack.top();
+					_stack.pop();
+					operant_a += operant_b;
+					if (operant_a > INT_MIN && operant_a < INT_MAX)
+						_stack.push(operant_a);
+					else
+						throw std::range_error("Operation out of INT limits.");
+				}
+				else if (token.at(0) == '-')
+				{
+					operant_a = _stack.top();
+					_stack.pop();
+					operant_b = _stack.top();
+					_stack.pop();
+					operant_a = operant_b - operant_a;
+					if (operant_a > INT_MIN && operant_a < INT_MAX)
+						_stack.push(operant_a);
+					else
+						throw std::range_error("Operation out of INT limits.");
+				}
+				else if (token.at(0) == '*')
+				{
+					operant_a = _stack.top();
+					_stack.pop();
+					operant_b = _stack.top();
+					_stack.pop();
+					operant_a *= operant_b;
+					if (operant_a > INT_MIN && operant_a < INT_MAX)
+						_stack.push(operant_a);
+					else
+						throw std::range_error("Operation out of INT limits.");
+				}
+				else if (token.at(0) == '/') 
+				{
+					operant_a = _stack.top();
+					_stack.pop();
+					operant_b = _stack.top();
+					_stack.pop();
+					if (operant_a != 0)
+						operant_a = operant_b / operant_a;
+					else
+						throw std::runtime_error("Division by zero.");
+				}
 			}
-			else if (token.at(0) == '-')
-			{
-				operant_a = _stack.top();
-				_stack.pop();
-				operant_b = _stack.top();
-				_stack.pop();
-				operant_a = operant_b - operant_a;
-				if (operant_a > INT_MIN && operant_a < INT_MAX)
-					_stack.push(operant_a);
-				else
-					throw std::range_error("Operation out of INT limits.");
-				_stack.push(operant_a);
-			}
-			else if (token.at(0) == '*')
-			{
-				operant_a = _stack.top();
-				_stack.pop();
-				operant_b = _stack.top();
-				_stack.pop();
-				operant_a *= operant_b;
-				if (operant_a > INT_MIN && operant_a < INT_MAX)
-					_stack.push(operant_a);
-				else
-					throw std::range_error("Operation out of INT limits.");
-				_stack.push(operant_a);
-			}
-			else if (token.at(0) == '/') 
-			{
-				operant_a = _stack.top();
-				_stack.pop();
-				operant_b = _stack.top();
-				_stack.pop();
-				if (operant_a != 0)
-					operant_a = operant_b / operant_a;
-				else
-					throw std::runtime_error("Division by zero.");
-				_stack.push(operant_a);
-			}
+			else
+				throw std::runtime_error("Not enough operands.");
 		}
 	}
-	while (!_stack.empty())
-	{
-		std::cout << _stack.top() << std::endl;
-		_stack.pop();
-	}
+	if (_stack.size() == 1) std::cout << _stack.top() << std::endl;
+	else throw std::runtime_error("Not enough operators.");
 }
 
 bool	ft_isDigit(char c)
