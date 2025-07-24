@@ -12,7 +12,25 @@
 
 #include "PmergeMe.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
-    return 0;
+	PmergeMe	pm;
+
+    if (argc > 1)
+    {
+		try
+		{
+			pm.parseArgs(argc, argv);
+			pm.doSorting();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << "Caught an exception: " << e.what() << RESET << '\n';
+		}
+    }
+    else
+    {
+        std::cout << "Please introduce correct arguments." << std::endl;
+    }
+     return 0;
 }
