@@ -62,6 +62,8 @@ void    RPN::reversePolishNotation(const std::string & input)
     
 	while (ss >> token)
 	{
+		if (token.size() > 1)
+			throw std::runtime_error("This program accepts digits with value less than 10.");
 		long long int		num = 0;
 		long long int		operant_a = 0;
 		long long int		operant_b = 0;
@@ -119,11 +121,16 @@ void    RPN::reversePolishNotation(const std::string & input)
 				else if (token.at(0) == '/') 
 				{
 					operant_a = _stack.top();
+					// std::cout << operant_a << std::endl;
 					_stack.pop();
 					operant_b = _stack.top();
+					// std::cout << operant_b << std::endl;
 					_stack.pop();
 					if (operant_a != 0)
+					{
 						operant_a = operant_b / operant_a;
+						_stack.push(operant_a);
+					}
 					else
 						throw std::runtime_error("Division by zero.");
 				}
