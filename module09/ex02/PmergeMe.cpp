@@ -25,6 +25,26 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 	return *this;
 }
 
+void	PmergeMe::removeDuplicates(const std::vector<int> &vector)
+{
+	std::set<int>		uniqueElements;
+	std::vector<int>	temp;
+	std::vector<int>::const_iterator	it = vector.begin();
+	for (; it != vector.end(); ++it)
+	{
+		if (uniqueElements.insert(*it).second)
+			temp.push_back(*it);
+		else
+			throw std::runtime_error("Error: duplicate found.");
+	}
+	vector.swap(temp);
+}
+
+void	PmergeMe::removeDuplicates(const std::deque<int> &deque)
+{
+
+}
+
 void	PmergeMe::parseArgs(int argc, char **argv)
 {
 	if (argc == 2)
@@ -37,11 +57,15 @@ void	PmergeMe::parseArgs(int argc, char **argv)
 			if (ft_isDigit(token.at(0)))
 			{
 				if (token.size() > 10 || !ft_strToLL(token, num))
-				{
-					std::cerr << "Error: bad input. This program accepts an array of positive integers" << std::endl;
-				}
+					throw std::runtime_error("Error: bad input. This program accepts an array of positive integers");
+				_vector.push_back(num);
+				_deque.push_back(num);
 			}
+			else
+				throw std::runtime_error("Error: bad input. This program accepts an array of positive integers");
 		}
+		removeDuplicates(_vector);
+		removeDuplicates(_deque);
 	}
 }
 
@@ -61,7 +85,7 @@ bool	ft_strToLL(const std::string & str, long long int &num)
 	std::stringstream	ss(str);
 
 	ss >> num;
-	if (ss.fail() || ss.eof())
+	if (ss.fail() || !ss.eof())
 		return false;
 	return true;
 }

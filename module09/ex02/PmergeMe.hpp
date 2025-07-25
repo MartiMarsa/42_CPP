@@ -16,6 +16,7 @@
 # include <iostream>
 # include <vector>
 # include <deque>
+# include <set>
 # include <sstream>
 
 # define RED     "\033[31m"
@@ -28,15 +29,17 @@
 
 class PmergeMe
 {
-    private:
-       std::vector<int>		_vector;
-	   std::deque<int>		_deque;
-    
+	private:
+		std::vector<int>		_vector;
+		std::deque<int>		_deque;
+		void	removeDuplicates(const std::vector<int> &vector);
+		void	removeDuplicates(const std::deque<int> &vector);
+
 	public:
-        PmergeMe();
-        ~PmergeMe();
-        PmergeMe(const PmergeMe &other);
-        PmergeMe    &operator=(const PmergeMe &other);
+		PmergeMe();
+		~PmergeMe();
+		PmergeMe(const PmergeMe &other);
+		PmergeMe    &operator=(const PmergeMe &other);
 
 		void 	parseArgs(int argc, char **argv);
 		void	doSorting();
