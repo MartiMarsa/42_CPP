@@ -25,7 +25,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 	return *this;
 }
 
-void	PmergeMe::removeDuplicates(const std::vector<int> &vector)
+void	PmergeMe::detectDuplicates(const std::vector<int> &vector)
 {
 	std::set<int>		uniqueElements;
 	std::vector<int>	temp;
@@ -37,12 +37,22 @@ void	PmergeMe::removeDuplicates(const std::vector<int> &vector)
 		else
 			throw std::runtime_error("Error: duplicate found.");
 	}
-	vector.swap(temp);
+	_vector.swap(temp);
 }
 
-void	PmergeMe::removeDuplicates(const std::deque<int> &deque)
+void	PmergeMe::detectDuplicates(const std::deque<int> &deque)
 {
-
+	std::set<int>	uniqueElements;
+	std::deque<int> temp;
+	std::deque<int>::const_iterator	it = deque.begin();
+	for (; it != deque.end(); ++it)
+	{
+		if (uniqueElements.insert(*it).second)
+			temp.push_back(*it);
+		else
+			throw std::runtime_error("Error: duplicate found.");
+	}
+	_deque.swap(temp);
 }
 
 void	PmergeMe::parseArgs(int argc, char **argv)
@@ -64,12 +74,16 @@ void	PmergeMe::parseArgs(int argc, char **argv)
 			else
 				throw std::runtime_error("Error: bad input. This program accepts an array of positive integers");
 		}
-		removeDuplicates(_vector);
-		removeDuplicates(_deque);
+		detectDuplicates(_vector);
+		detectDuplicates(_deque);
 	}
 }
 
 void	PmergeMe::doSorting() {}
+
+const std::vector<int> &PmergeMe::getVector() const { return this->_vector; }
+
+const std::deque<int> &PmergeMe::getDeque() const { return this->_deque; }
 
 bool	ft_isDigit(char c)
 {
