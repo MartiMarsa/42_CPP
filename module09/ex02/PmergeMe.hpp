@@ -44,6 +44,7 @@ class PmergeMe
 
 		void 	parseArgs(int argc, char **argv);
 		void	mergeInsertionSort(std::vector<int> &arr);
+		void	binaryInsert(std::vector<int> &arr, int num);
 
 		const std::vector<int> &getVector() const;
 		const std::deque<int> &getDeque() const;

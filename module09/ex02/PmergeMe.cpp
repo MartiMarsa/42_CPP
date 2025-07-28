@@ -79,6 +79,21 @@ void	PmergeMe::parseArgs(int argc, char **argv)
 	}
 }
 
+void	PmergeMe::binaryInsert(std::vector<int> & arr, int num)
+{
+	int	left = 0;
+	int	right = arr.size() - 1;
+	while (left <= right)
+	{
+		int	mid = left + (right - left) / 2;
+		if (arr[mid] < num)
+			left = mid + 1;
+		else
+			right = mid - 1;
+	}
+	arr.insert(arr.begin() + left, num);
+}
+
 void	PmergeMe::mergeInsertionSort(std::vector<int> & arr)
 {
 	if (!arr.empty())
