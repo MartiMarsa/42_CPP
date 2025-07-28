@@ -18,6 +18,7 @@
 # include <deque>
 # include <set>
 # include <sstream>
+# include <algorithm>
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -32,8 +33,8 @@ class PmergeMe
 	private:
 		std::vector<int>		_vector;
 		std::deque<int>		_deque;
-		void	removeDuplicates(const std::vector<int> &vector);
-		void	removeDuplicates(const std::deque<int> &vector);
+		void	detectDuplicates(const std::vector<int> &vector);
+		void	detectDuplicates(const std::deque<int> &deque);
 
 	public:
 		PmergeMe();
@@ -42,7 +43,10 @@ class PmergeMe
 		PmergeMe    &operator=(const PmergeMe &other);
 
 		void 	parseArgs(int argc, char **argv);
-		void	doSorting();
+		void	mergeInsertionSort(std::vector<int> &arr);
+
+		const std::vector<int> &getVector() const;
+		const std::deque<int> &getDeque() const;
 };
 
 bool	ft_isDigit(char c);

@@ -79,7 +79,50 @@ void	PmergeMe::parseArgs(int argc, char **argv)
 	}
 }
 
-void	PmergeMe::doSorting() {}
+void	PmergeMe::mergeInsertionSort(std::vector<int> & arr)
+{
+	if (!arr.empty())
+		throw std::runtime_error("Error: empty input.");
+	if (arr.size() < 2)
+		return;
+	
+	int odd = -1;
+	if (arr.size() % 2 != 0)
+	{
+		odd = arr.back();
+		arr.pop_back();
+	}
+
+	std::vector<int>	winners;
+	std::vector<int>	losers;
+	
+	for (size_t i = 0; i < arr.size(); i += 2)
+	{
+		if (arr[i] < arr[i + 1])
+		{
+			winners.push_back(arr[i + 1]);
+			losers.push_back(arr[i]);
+		}
+		else
+		{
+			winners.push_back(arr[i]);
+			losers.push_back(arr[i + 1]);
+		}
+	}
+
+	mergeInsertionSort(winners);
+	if (!losers.empty())
+	{
+		std::vector<int>::const_iterator	it = std::find(arr.begin(), arr.end(), winners[0]);
+		if (it != arr.end() && (it - arr.begin()) % 2 == 0)
+			binaryInsert(winners, losers[0]);
+		else
+			winners.insert(winners.begin(), losers[0]);
+	}
+
+	//Step 4 -> Insert remaining losers sequence
+	//Step 5 -> insert odd if any
+}
 
 const std::vector<int> &PmergeMe::getVector() const { return this->_vector; }
 
