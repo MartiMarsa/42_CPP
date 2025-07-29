@@ -94,6 +94,33 @@ void	PmergeMe::binaryInsert(std::vector<int> & arr, int num)
 	arr.insert(arr.begin() + left, num);
 }
 
+std::vector<int>	PmergeMe::jacobsthalGenerator(int i)
+{
+	std::vector<int>	jacobSequence;
+	jacobSequence.push_back(0);
+	jacobSequence.push_back(1);
+	while (jacobSequence.back() <= i)
+	{
+		int n = jacobSequence[jacobSequence.size() - 1] + 2 * jacobSequence[jacobSequence.size() - 2];
+		jacobSequence.push_back(n);
+	}
+	return jacobSequence;
+}
+
+void	PmergeMe::insertLosers(std::vector<int> winners, std::vector<int> losers)
+{
+	std::vector<int>	jS = jacobsthalGenerator(losers.size());
+	int	m = jS.size() - 2;
+	while (m >= 1)
+	{
+		int	step = jS[m];
+		for (size_t i = step - 1; i < losers.size(); i += step)
+			binaryInsert(winners, losers[i]);
+		--m;
+	}
+}
+		
+
 void	PmergeMe::mergeInsertionSort(std::vector<int> & arr)
 {
 	if (!arr.empty())
@@ -135,13 +162,16 @@ void	PmergeMe::mergeInsertionSort(std::vector<int> & arr)
 			winners.insert(winners.begin(), losers[0]);
 	}
 
-	//Step 4 -> Insert remaining losers sequence
-	//Step 5 -> insert odd if any
+	insertLosers(winners, losers);
+	if (odd != -1)
+		binaryInsert(winners, odd);
+
+	arr = winners;
 }
 
-const std::vector<int> &PmergeMe::getVector() const { return this->_vector; }
+std::vector<int> &PmergeMe::getVector() { return this->_vector; }
 
-const std::deque<int> &PmergeMe::getDeque() const { return this->_deque; }
+std::deque<int> &PmergeMe::getDeque() { return this->_deque; }
 
 bool	ft_isDigit(char c)
 {

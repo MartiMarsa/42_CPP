@@ -30,7 +30,12 @@ int main(int argc, char **argv)
 			for (std::deque<int>::const_iterator it = pm.getDeque().begin(); it != pm.getDeque().end(); ++it)
 				std::cout << *it << " ";
 			std::cout << std::endl;
-			pm.mergeInsertionSort();
+			pm.mergeInsertionSort(pm.getVector());
+			std::cout << "VECTOR: ";
+			for (std::vector<int>::const_iterator it = pm.getVector().begin(); it != pm.getVector().end(); ++it)
+			{
+				std::cout << *it << " ";
+			}
 		}
 		catch(const std::exception& e)
 		{

@@ -45,9 +45,10 @@ class PmergeMe
 		void 	parseArgs(int argc, char **argv);
 		void	mergeInsertionSort(std::vector<int> &arr);
 		void	binaryInsert(std::vector<int> &arr, int num);
-
-		const std::vector<int> &getVector() const;
-		const std::deque<int> &getDeque() const;
+		void	insertLosers(std::vector<int> winners, std::vector<int> losers);
+		std::vector<int>	jacobsthalGenerator(int i);
+		std::vector<int> &getVector();
+		std::deque<int> &getDeque();
 };
 
 bool	ft_isDigit(char c);
