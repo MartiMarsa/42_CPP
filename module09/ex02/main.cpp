@@ -59,8 +59,8 @@ int main(int argc, char **argv)
 				std::cout << pm.getVector()[i] << " ";
 			}
 			std::cout << std::endl;
-			std::cout << "Time to process a range of " << pm.getVector().size() << " elements with std::vector : " << std::fixed << std::setprecision(3) << vecTime/1000 << " ms" << std::endl;
-			std::cout << "Time to process a range of " << pm.getDeque().size() << " elements with std::deque : " << std::fixed << std::setprecision(3) << deqTime/1000 << " ms" << std::endl;
+			std::cout << "Time to process a range of " << pm.getOriginalVector().size() << " elements with std::vector : " << std::fixed << std::setprecision(3) << vecTime/1000 << " ms" << std::endl;
+			std::cout << "Time to process a range of " << pm.getOriginalDeque().size() << " elements with std::deque : " << std::fixed << std::setprecision(3) << deqTime/1000 << " ms" << std::endl;
 		}
 		catch(const std::exception& e)
 		{

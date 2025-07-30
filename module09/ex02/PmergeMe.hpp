@@ -35,7 +35,9 @@ class PmergeMe
 {
 	private:
 		std::vector<int>		_vector;
-		std::deque<int>		_deque;
+		std::vector<int>		_originalVector;
+		std::deque<int>			_deque;
+		std::deque<int>			_originalDeque;
 
 		std::vector<int>	jacobsthalGenerator(int i);
 		
@@ -59,6 +61,8 @@ class PmergeMe
 
 		std::vector<int> 	&getVector();
 		std::deque<int>		&getDeque();
+		std::vector<int> 	&getOriginalVector();
+		std::deque<int>		&getOriginalDeque();		
 };
 
 bool	ft_isDigit(char c);

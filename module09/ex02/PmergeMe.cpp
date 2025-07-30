@@ -73,6 +73,8 @@ void PmergeMe::parseArgs(int argc, char **argv)
 	}
 	detectDuplicates(_vector);
 	detectDuplicates(_deque);
+	_originalVector = _vector;
+	_originalDeque = _deque;
 }
 
 void PmergeMe::processToken(const std::string& token)
@@ -131,8 +133,11 @@ void PmergeMe::insertLosers(std::deque<int>& winners, std::deque<int>& losers)
 		int step = jS[m];
 		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2)
 		{
-			if (i > 0)
+			if (i > 0 && losers[i] != 0)
+			{
 				binaryInsert(winners, losers[i]);
+				losers[i] = 0;
+			}
 		}
 		m++;
 	}
@@ -221,8 +226,11 @@ void PmergeMe::insertLosers(std::vector<int>& winners, std::vector<int>& losers)
 		int step = jS[m];
 		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2)
 		{
-			if (i > 0)
+			if (i > 0 && losers[i] != 0)
+			{
 				binaryInsert(winners, losers[i]);
+				losers[i] = 0;
+			}
 		}
 		m++;
 	}
@@ -234,7 +242,7 @@ void PmergeMe::insertLosers(std::vector<int>& winners, std::vector<int>& losers)
 			if ((i + 1) % jS[j] == 0)
 				inserted = true;
 		}
-		if (!inserted)
+		if (!inserted && losers[i] != 0)
 			binaryInsert(winners, losers[i]);
 	}
 }
@@ -284,6 +292,10 @@ void	PmergeMe::mergeInsertionSort(std::vector<int> & arr)
 std::vector<int> &PmergeMe::getVector() { return this->_vector; }
 
 std::deque<int> &PmergeMe::getDeque() { return this->_deque; }
+
+std::vector<int> 	&PmergeMe::getOriginalVector() {return this->_originalVector; }
+
+std::deque<int>		&PmergeMe::getOriginalDeque() { return this->_originalDeque; }
 
 bool	ft_isDigit(char c)
 {
