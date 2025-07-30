@@ -19,6 +19,9 @@
 # include <set>
 # include <sstream>
 # include <algorithm>
+# include <iomanip>
+# include <ctime>
+# include <sys/time.h>
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -33,8 +36,16 @@ class PmergeMe
 	private:
 		std::vector<int>		_vector;
 		std::deque<int>		_deque;
+
+		std::vector<int>	jacobsthalGenerator(int i);
+		
+		void	processToken(const std::string& token);
 		void	detectDuplicates(const std::vector<int> &vector);
 		void	detectDuplicates(const std::deque<int> &deque);
+		void	binaryInsert(std::vector<int> &arr, int num);
+		void	binaryInsert(std::deque<int> &arr, int num);
+		void	insertLosers(std::vector<int> &winners, std::vector<int> &losers);
+		void	insertLosers(std::deque<int> &winners, std::deque<int> &losers);
 
 	public:
 		PmergeMe();
@@ -44,11 +55,10 @@ class PmergeMe
 
 		void 	parseArgs(int argc, char **argv);
 		void	mergeInsertionSort(std::vector<int> &arr);
-		void	binaryInsert(std::vector<int> &arr, int num);
-		void	insertLosers(std::vector<int> winners, std::vector<int> losers);
-		std::vector<int>	jacobsthalGenerator(int i);
-		std::vector<int> &getVector();
-		std::deque<int> &getDeque();
+		void	mergeInsertionSort(std::deque<int> &arr);
+
+		std::vector<int> 	&getVector();
+		std::deque<int>		&getDeque();
 };
 
 bool	ft_isDigit(char c);

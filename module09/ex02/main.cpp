@@ -20,31 +20,56 @@ int main(int argc, char **argv)
     {
 		try
 		{
+			struct timeval start, end;
+			gettimeofday(&start, NULL);
 			pm.parseArgs(argc, argv);
-			std::cout << "VECTOR: ";
-			for (std::vector<int>::const_iterator it = pm.getVector().begin(); it != pm.getVector().end(); ++it)
+			gettimeofday(&end, NULL);
+			double	time = (end.tv_sec = start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
+			std::cout << "Before: ";
+			int print_limit = std::min(10, static_cast<int>(pm.getVector().size()));
+			for (int i = 0; i < print_limit; ++i) 
 			{
-				std::cout << *it << " ";
+				std::cout << pm.getVector()[i] << " ";
 			}
-			std::cout << "\nDEQUE: ";
-			for (std::deque<int>::const_iterator it = pm.getDeque().begin(); it != pm.getDeque().end(); ++it)
-				std::cout << *it << " ";
 			std::cout << std::endl;
+
+			/********************************************\
+			|*           🚀  V E C T O R  🚀          *|
+			\********************************************/
+
+			struct timeval vecStart, vecEnd;
+			gettimeofday(&vecStart, NULL);
 			pm.mergeInsertionSort(pm.getVector());
-			std::cout << "VECTOR: ";
-			for (std::vector<int>::const_iterator it = pm.getVector().begin(); it != pm.getVector().end(); ++it)
+			gettimeofday(&vecEnd, NULL);
+			double vecTime = (vecEnd.tv_sec - vecStart.tv_sec) * 1000000.0 + (vecEnd.tv_usec - vecStart.tv_usec) + time;
+
+			/********************************************\
+			|*           🃏  D E Q U E  🃏            *|
+			\********************************************/
+
+			struct timeval deqStart, deqEnd;
+			gettimeofday(&deqStart, NULL);
+			pm.mergeInsertionSort(pm.getDeque());
+			gettimeofday(&deqEnd, NULL);
+			double deqTime = (deqEnd.tv_sec - deqStart.tv_sec) * 1000000.0 + (deqEnd.tv_usec - deqStart.tv_usec) + time;
+			
+			std::cout << "After: ";
+			for (int i = 0; i < print_limit; ++i) 
 			{
-				std::cout << *it << " ";
+				std::cout << pm.getVector()[i] << " ";
 			}
+			std::cout << std::endl;
+			std::cout << "Time to process a range of " << pm.getVector().size() << " elements with std::vector : " << std::fixed << std::setprecision(3) << vecTime/1000 << " ms" << std::endl;
+			std::cout << "Time to process a range of " << pm.getDeque().size() << " elements with std::deque : " << std::fixed << std::setprecision(3) << deqTime/1000 << " ms" << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << RED << "Caught an exception: " << e.what() << RESET << '\n';
 		}
-    }
-    else
-    {
-        std::cout << "Please introduce correct arguments." << std::endl;
-    }
-     return 0;
-}
+	}
+	else
+	{
+	    std::cout << "Please introduce correct arguments." << std::endl;
+	}
+	 return 0;
+	}
