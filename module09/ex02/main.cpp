@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 			gettimeofday(&start, NULL);
 			pm.parseArgs(argc, argv);
 			gettimeofday(&end, NULL);
-			double	time = (end.tv_sec = start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
+			double	time = (end.tv_sec = start.tv_sec) + (end.tv_usec - start.tv_usec);
 			std::cout << "Before: ";
 			int print_limit = std::min(10, static_cast<int>(pm.getVector().size()));
 			for (int i = 0; i < print_limit; ++i) 
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 			gettimeofday(&vecStart, NULL);
 			pm.mergeInsertionSort(pm.getVector());
 			gettimeofday(&vecEnd, NULL);
-			double vecTime = (vecEnd.tv_sec - vecStart.tv_sec) * 1000000.0 + (vecEnd.tv_usec - vecStart.tv_usec) + time;
+			double vecTime = (vecEnd.tv_sec - vecStart.tv_sec) * 1000000.0 + (vecEnd.tv_usec - vecStart.tv_usec) + time/1000000;
 
 			/********************************************\
 			|*           🃏  D E Q U E  🃏            *|
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 			gettimeofday(&deqStart, NULL);
 			pm.mergeInsertionSort(pm.getDeque());
 			gettimeofday(&deqEnd, NULL);
-			double deqTime = (deqEnd.tv_sec - deqStart.tv_sec) * 1000000.0 + (deqEnd.tv_usec - deqStart.tv_usec) + time;
+			double deqTime = (deqEnd.tv_sec - deqStart.tv_sec) * 1000000.0 + (deqEnd.tv_usec - deqStart.tv_usec) + time/1000000;
 			
 			std::cout << "After: ";
 			for (int i = 0; i < print_limit; ++i) 

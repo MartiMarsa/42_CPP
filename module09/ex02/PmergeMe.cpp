@@ -126,19 +126,26 @@ void PmergeMe::insertLosers(std::deque<int>& winners, std::deque<int>& losers)
 	std::vector<int>	jS = jacobsthalGenerator(losers.size());
 		
 	size_t m = 3;
-	while (m < jS.size() && jS[m] <= (int)losers.size()) {
+	while (m < jS.size() && jS[m] <= (int)losers.size())
+	{
 		int step = jS[m];
-		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2) {
-			if (i > 0) binaryInsert(winners, losers[i]);
+		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2)
+		{
+			if (i > 0)
+				binaryInsert(winners, losers[i]);
 		}
 		m++;
 	}
-	for (size_t i = 1; i < losers.size(); ++i) {
+	for (size_t i = 1; i < losers.size(); ++i)
+	{
 		bool inserted = false;
-		for (size_t j = 3; j < jS.size() && !inserted; ++j) {
-			if ((i + 1) % jS[j] == 0) inserted = true;
+		for (size_t j = 3; j < jS.size() && !inserted; ++j)
+		{
+			if ((i + 1) % jS[j] == 0)
+				inserted = true;
 		}
-		if (!inserted) binaryInsert(winners, losers[i]);
+		if (!inserted)
+			binaryInsert(winners, losers[i]);
 	}
 }
 
@@ -209,19 +216,26 @@ void PmergeMe::insertLosers(std::vector<int>& winners, std::vector<int>& losers)
 	std::vector<int>	jS = jacobsthalGenerator(losers.size());
 		
 	size_t m = 3;
-	while (m < jS.size() && jS[m] <= (int)losers.size()) {
+	while (m < jS.size() && jS[m] <= (int)losers.size())
+	{
 		int step = jS[m];
-		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2) {
-			if (i > 0) binaryInsert(winners, losers[i]);
+		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2)
+		{
+			if (i > 0)
+				binaryInsert(winners, losers[i]);
 		}
 		m++;
 	}
-	for (size_t i = 1; i < losers.size(); ++i) {
+	for (size_t i = 1; i < losers.size(); ++i)
+	{
 		bool inserted = false;
-		for (size_t j = 3; j < jS.size() && !inserted; ++j) {
-			if ((i + 1) % jS[j] == 0) inserted = true;
+		for (size_t j = 3; j < jS.size() && !inserted; ++j)
+		{
+			if ((i + 1) % jS[j] == 0)
+				inserted = true;
 		}
-		if (!inserted) binaryInsert(winners, losers[i]);
+		if (!inserted)
+			binaryInsert(winners, losers[i]);
 	}
 }
 
