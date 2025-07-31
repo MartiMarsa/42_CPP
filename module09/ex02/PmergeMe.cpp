@@ -128,33 +128,23 @@ void	PmergeMe::binaryInsert(std::deque<int> & arr, int num)
 void PmergeMe::insertLosers(std::deque<int>& winners, std::deque<int>& losers)
 {
 	if (losers.size() <= 1)
-	return;
-
-	std::vector<int>	jS = jacobsthalGenerator(losers.size());
-		
-	size_t m = 3;
-	while (m < jS.size() && jS[m] <= (int)losers.size())
-	{
+		return;
+	std::vector<int> jS = jacobsthalGenerator(losers.size());
+	std::vector<bool> inserted(losers.size(), false);
+	for (size_t m = jS.size() - 1; m >= 1 && m < jS.size(); --m) {
 		int step = jS[m];
-		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step * 2)
+		for (int i = step - 1; i < static_cast<int>(losers.size()); i += step)
 		{
-			if (i > 0 && losers[i] != 0)
+			if (!inserted[i])
 			{
 				binaryInsert(winners, losers[i]);
-				losers[i] = 0;
+				inserted[i] = true;
 			}
 		}
-		m++;
 	}
-	for (size_t i = 1; i < losers.size(); ++i)
+	for (size_t i = 0; i < losers.size(); ++i)
 	{
-		bool inserted = false;
-		for (size_t j = 3; j < jS.size() && !inserted; ++j)
-		{
-			if ((i + 1) % jS[j] == 0)
-				inserted = true;
-		}
-		if (!inserted)
+		if (!inserted[i])
 			binaryInsert(winners, losers[i]);
 	}
 }
@@ -172,21 +162,24 @@ void	PmergeMe::mergeInsertionSort(std::deque<int> & arr)
 		odd = arr.back();
 		arr.pop_back();
 	}
-
-	std::deque<int>	winners;
-	std::deque<int>	losers;
-	
+	std::deque<std::pair<int, int> > pairs;
 	for (size_t i = 0; i < arr.size(); i += 2)
 	{
-		if (arr[i] < arr[i + 1])
+		if (i + 1 < arr.size())
+			pairs.push_back(std::make_pair(arr[i], arr[i+1]));
+	}
+	std::deque<int>	winners;
+	std::deque<int>	losers;
+	for (size_t i = 0; i < pairs.size(); ++i)
+	{
+		if (pairs[i].first < pairs[i].second)
 		{
-			winners.push_back(arr[i + 1]);
-			losers.push_back(arr[i]);
-		}
-		else
+			winners.push_back(pairs[i].second);
+			losers.push_back(pairs[i].first);
+		} else
 		{
-			winners.push_back(arr[i]);
-			losers.push_back(arr[i + 1]);
+			winners.push_back(pairs[i].first);
+			losers.push_back(pairs[i].second);
 		}
 	}
 	mergeInsertionSort(winners);
@@ -195,7 +188,6 @@ void	PmergeMe::mergeInsertionSort(std::deque<int> & arr)
 	insertLosers(winners, losers);
 	if (odd != -1)
 		binaryInsert(winners, odd);
-
 	arr = winners;
 }
 
