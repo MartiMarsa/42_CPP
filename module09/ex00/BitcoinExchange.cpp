@@ -202,13 +202,15 @@ void    BitcoinExchange::btcExchange(const std::string &input)
 
 	while(std::getline(in, str))
 	{
+		std::string line(str);
+		line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
 		if (firstLine)
 		{
+			if (line != "date|value")
+				throw std::runtime_error("Error: missing or malformed first line.");
 			firstLine = false;
 			continue;
 		}
-		std::string line(str);
-		line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
 		std::stringstream 	ss(line);
 		std::string			date;
 		std::string			amount;

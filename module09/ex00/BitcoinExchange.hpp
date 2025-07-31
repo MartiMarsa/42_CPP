@@ -20,6 +20,7 @@
 # include <map>
 # include <algorithm>
 # include <ctype.h>
+# include <exception>
 
 class BitcoinExchange
 {

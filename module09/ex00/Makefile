@@ -21,7 +21,7 @@ D_OBJ = obj/
 OBJ = $(addprefix $(D_OBJ), $(SRC:.cpp=.o))
 DEP = $(addprefix $(D_OBJ), $(SRC:.cpp=.d))
 
-$(D_OBJ)%o: %cpp Makefile
+$(D_OBJ)%.o: %.cpp Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: dir $(NAME)
