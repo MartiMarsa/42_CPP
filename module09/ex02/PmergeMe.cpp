@@ -183,7 +183,7 @@ void	PmergeMe::mergeInsertionSort(std::deque<int> & arr)
 		}
 	}
 	mergeInsertionSort(winners);
-	if (!losers.empty())
+	if (!losers.empty() && winners.size() < 2)
 		binaryInsert(winners, losers[0]);
 	insertLosers(winners, losers);
 	if (odd != -1)
