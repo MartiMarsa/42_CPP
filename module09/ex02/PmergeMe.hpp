@@ -21,6 +21,7 @@
 # include <algorithm>
 # include <iomanip>
 # include <ctime>
+# include <climits>
 # include <sys/time.h>
 
 # define RED     "\033[31m"

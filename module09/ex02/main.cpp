@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 			gettimeofday(&end, NULL);
 			double	time = (end.tv_sec = start.tv_sec) + (end.tv_usec - start.tv_usec);
 			std::cout << "Before: ";
-			int print_limit = std::min(10, static_cast<int>(pm.getVector().size()));
+			int print_limit = std::min(20, static_cast<int>(pm.getVector().size()));
 			for (int i = 0; i < print_limit; ++i) 
 			{
 				std::cout << pm.getVector()[i] << " ";
